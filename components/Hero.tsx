@@ -1,0 +1,176 @@
+'use client';
+
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
+import { useLang } from '@/contexts/LanguageContext';
+
+export default function Hero() {
+  const { t } = useLang();
+  const containerRef = useRef<HTMLElement | null>(null);
+  const [cursor, setCursor] = useState({ x: '50%', y: '50%' });
+
+  /* Mouse parallax follow */
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const onMove = (e: MouseEvent) => {
+      const r = el.getBoundingClientRect();
+      setCursor({
+        x: `${((e.clientX - r.left) / r.width) * 100}%`,
+        y: `${((e.clientY - r.top) / r.height) * 100}%`,
+      });
+    };
+    el.addEventListener('mousemove', onMove);
+    return () => el.removeEventListener('mousemove', onMove);
+  }, []);
+
+  return (
+    <section
+      ref={containerRef}
+      className="hero-section relative flex items-center justify-center"
+    >
+      {/* ── Background ── */}
+      <div className="hero-bg absolute inset-0" />
+      <div className="hero-orb hero-orb-1" />
+      <div className="hero-orb hero-orb-2" />
+      <div className="hero-orb hero-orb-3" />
+
+      {/* Mouse highlight */}
+      <div
+        className="pointer-events-none absolute inset-0 transition-all duration-200"
+        style={{
+          background: `radial-gradient(520px at ${cursor.x} ${cursor.y}, rgba(255,255,255,0.24), transparent 65%)`,
+        }}
+      />
+
+      {/* Main hero layout */}
+      <div
+        className="hero-content relative z-10 w-full max-w-5xl mx-auto px-4"
+      >
+        <div className="hero-stage">
+          <div className="hero-main-wrap">
+            {/* ── Slot machine column – desktop only ── */}
+            <div className="slot-col hidden lg:flex" aria-hidden="true">
+              <div className="slot-win">
+                {/* outer: only translateY */}
+                <div className="slot-scroll">
+                  <div className="slot-items">
+                    {/* 3× for seamless loop (5 chips × 3 = 15 items) */}
+                    {[...t.chips, ...t.chips, ...t.chips].map((chip, i) => (
+                      <span
+                        key={i}
+                        className="slot-item"
+                        style={{
+                          borderColor: chip.color + '66',
+                          color: 'var(--text-primary)',
+                          boxShadow: `0 6px 22px ${chip.glow}, 0 1px 0 rgba(255,255,255,0.22) inset`,
+                        }}
+                      >
+                        <span style={{ fontSize: '1rem' }}>{chip.icon}</span>
+                        {chip.label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="hero-card mx-auto max-w-3xl rounded-[2rem] px-7 py-10 text-center md:px-12 md:py-12">
+              <div className="relative z-10">
+                <p
+                  className="anim-fade-up text-xs uppercase tracking-[0.34em] font-extrabold mb-5"
+                  style={{ color: 'var(--accent2)', textShadow: '0 0 22px rgba(0,212,255,0.45)' }}
+                >
+                  {t.hero.eyebrow}
+                </p>
+
+                <h1
+                  className="anim-fade-up-1 text-3xl md:text-5xl lg:text-[3.35rem] font-black leading-[1.02] tracking-[-0.05em] mb-5"
+                  style={{ color: 'var(--text-primary)' }}
+                >
+                  {t.hero.headline.split('\n').map((line, i) => (
+                    <span key={i} className="block">{line}</span>
+                  ))}
+                </h1>
+
+                <p
+                  className="anim-fade-up-2 text-base md:text-lg max-w-2xl mx-auto mb-8 leading-relaxed"
+                  style={{ color: 'var(--text-secondary)' }}
+                >
+                  {t.hero.sub}
+                </p>
+
+                <div className="anim-fade-up-3 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <Link
+                    href="#portfolio"
+                    className="relative overflow-hidden px-8 py-3.5 rounded-full font-extrabold text-white text-sm transition-all duration-300 hover:scale-[1.04]"
+                    style={{
+                      background: 'linear-gradient(135deg, #006dff 0%, #00d4ff 52%, #7c3aed 100%)',
+                      boxShadow: '0 14px 44px var(--accent-glow)',
+                    }}
+                  >
+                    <span className="relative z-10">{t.hero.cta1}</span>
+                    <span className="absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100" style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.24), transparent)' }} />
+                  </Link>
+                  <Link
+                    href="#services"
+                    className="px-8 py-3.5 rounded-full font-bold text-sm transition-all duration-300 hover:scale-[1.04]"
+                    style={{
+                      background: 'var(--bg-glass-strong)',
+                      border: '1px solid var(--border-glass)',
+                      color: 'var(--text-primary)',
+                      backdropFilter: 'blur(14px)',
+                      WebkitBackdropFilter: 'blur(14px)',
+                      boxShadow: '0 10px 34px rgba(0,0,0,0.10)',
+                    }}
+                  >
+                    {t.hero.cta2}
+                  </Link>
+                </div>
+
+                {/* ── Horizontal slot row – mobile / tablet ── */}
+                <div className="anim-fade-up-4 lg:hidden slot-row-win" aria-hidden="true">
+                  <div className="slot-row-track">
+                    {[...t.chips, ...t.chips, ...t.chips].map((chip, i) => (
+                      <span
+                        key={i}
+                        className="slot-item"
+                        style={{
+                          borderColor: chip.color + '66',
+                          color: 'var(--text-primary)',
+                          boxShadow: `0 6px 22px ${chip.glow}, 0 1px 0 rgba(255,255,255,0.22) inset`,
+                        }}
+                      >
+                        <span style={{ fontSize: '0.95rem' }}>{chip.icon}</span>
+                        {chip.label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll cue */}
+      <div
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 opacity-50"
+        aria-hidden="true"
+      >
+        <div
+          className="w-5 h-8 rounded-full border-2 flex justify-center pt-1.5"
+          style={{ borderColor: 'var(--text-muted)' }}
+        >
+          <div
+            className="w-1 h-2 rounded-full"
+            style={{
+              background: 'var(--accent)',
+              animation: 'float3 2s ease-in-out infinite',
+            }}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
