@@ -5,14 +5,13 @@ import Image from 'next/image';
 import { useLang } from '@/contexts/LanguageContext';
 
 const carouselImages = [
-  'https://images.unsplash.com/photo-1603320284370-d33c0e5ff086?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NjIyMDYxNDB8&ixlib=rb-4.1.0&q=80&w=500',
-  'https://images.unsplash.com/photo-1633871771924-380d6123659b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NjIyMDU3ODl8&ixlib=rb-4.1.0&q=80&w=500',
-  'https://images.unsplash.com/photo-1571928002685-15aeba39a2d4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NjIyMDYxNjV8&ixlib=rb-4.1.0&q=80&w=500',
-  'https://images.unsplash.com/photo-1605643362116-ccf4302f9453?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NjIyMDYxNzV8&ixlib=rb-4.1.0&q=80&w=500',
-  'https://images.unsplash.com/photo-1634473117419-92371b2bf457?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NjIyMDU5MTF8&ixlib=rb-4.1.0&q=80&w=500',
-  'https://images.unsplash.com/photo-1697375805257-a5220aa18c55?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NjIyMDU5NzB8&ixlib=rb-4.1.0&q=80&w=500',
-  'https://images.unsplash.com/photo-1698831695020-2e94ebfdfed7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NjIyMDU5Nzl8&ixlib=rb-4.1.0&q=80&w=500',
-  'https://images.unsplash.com/photo-1577222960172-18c61acf6791?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NjIyMDYyODJ8&ixlib=rb-4.1.0&q=80&w=500',
+  '/images/donchevservice.webp',
+  '/images/davtrade98.webp',
+  '/images/mbcodingplovdiv.webp',
+  '/images/deyanair.webp',
+  '/images/lucky-garden.webp',
+  '/images/davtrade98.webp',
+  '/images/medeva.webp',
 ];
 
 export default function ImageCarousel() {
@@ -48,7 +47,7 @@ export default function ImageCarousel() {
             <div className="image-carousel-ring">
               {carouselImages.map((src, index) => (
                 <div
-                  key={src}
+                  key={`${src}-${index}`}
                   className="image-carousel-card"
                   style={{ '--carousel-angle': `${index * step}deg` } as CSSProperties}
                 >

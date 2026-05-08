@@ -68,6 +68,63 @@ export const translations = {
       primary: 'Contact me',
       secondary: 'Back to top',
     },
+    testimonials: {
+      title: 'Wall of Love',
+      sub: 'SEO, design, and development that earns attention—and landing pages engineered to capture leads.',
+      overallRating: '4.9 / 5',
+      overallRatingCaption: 'Combined client satisfaction from feedback on completed projects.',
+      badge: 'Highly rated on recent client work',
+      reviews: [
+        {
+          name: 'Rachel Kim',
+          role: 'Marketing Manager, B2B SaaS',
+          quote:
+            'Organic traffic finally moved after a proper technical cleanup and sharper on-page SEO. We rank for phrases that produce demos—not empty impressions.',
+        },
+        {
+          name: 'James O’Connell',
+          role: 'Owner, home services company',
+          quote:
+            'The redesign looks premium, loads fast, and the calls-to-action are obvious. Quote requests funnel cleanly into email and CRM—we book more consultations without raising ad spend.',
+        },
+        {
+          name: 'Amélie Fontaine',
+          role: 'Founder, creative studio',
+          quote:
+            'Our site finally matches how we pitch in the room—consistent typography, spacing, and case-study layouts. Handoff-to-build was painless and the frontend feels meticulous.',
+        },
+        {
+          name: 'David Park',
+          role: 'Growth lead, consultancy',
+          quote:
+            'We launched a targeted landing page for a new offer: structure, urgency, proof, and analytics were nailed. Qualified form fills showed up quickly—far fewer tyre-kickers than before.',
+        },
+        {
+          name: 'Laura Bennett',
+          role: 'Coach & facilitator',
+          quote:
+            'Lead capture used to leak everywhere. Martin simplified the funnel—one decisive landing path, tighter copy, smarter form fields—and I stopped missing bookings.',
+        },
+        {
+          name: 'Marco Silvestri',
+          role: 'E-commerce brand manager',
+          quote:
+            'Product pages benefited from UX polish plus SEO-aware headings and internal linking. Fewer abandonments from slow loads, clearer trust signals—sales from organic noticeably improved.',
+        },
+        {
+          name: 'Priya Natarajan',
+          role: 'Services director',
+          quote:
+            'Messaging for our flagship service was muddy. Together we sharpened positioning, tightened the narrative on the homepage, then backed it with measurable SEO uplift and steady inbound requests.',
+        },
+        {
+          name: 'Tomáš Horák',
+          role: 'Partner, software studio',
+          quote:
+            'We needed a credible client-facing front door: semantic structure, lightning performance, polished UI, and sane metadata/schema. Exactly what landed—partners cite the site unprompted now.',
+        },
+      ],
+    },
   },
   bg: {
     nav: {
@@ -132,6 +189,63 @@ export const translations = {
       primary: 'Свържи се',
       secondary: 'Към началото',
     },
+    testimonials: {
+      title: 'Стена на доверието',
+      sub: 'SEO, дизайн и разработка, които печелят внимание—и лендинги, изградени да събират качествени лидове.',
+      overallRating: '4.9 / 5',
+      overallRatingCaption: 'Обобщена оценка на база клиентска обратна връзка от завършени проекти.',
+      badge: 'Силни оценки от последни проекти',
+      reviews: [
+        {
+          name: 'Николай Василев',
+          role: 'Собственик, сервизна компания',
+          quote:
+            'След техническото SEO и по-ясната структура на страниците трафикът ни стана по-смислен. Появихме се за заявки от хора с реални проблеми, не просто случайни кликове.',
+        },
+        {
+          name: 'Мария Георгиева',
+          role: 'Архитект, студио за интериор',
+          quote:
+            'Новият сайт изглежда авторски и чист, а не „шаблонен“. Клиентите казват, че веднага разбират как работим и накъде сме профи—запитванията ни идват по-качествени.',
+        },
+        {
+          name: 'Иво Стоянов',
+          role: 'Продуктов мениджър',
+          quote:
+            'Искахме бърз, модерен интерфейс без компромис с детайла. Frontend-ът е стегнат и стабилен, а промените по съдържанието вече не са кошмар за екипа.',
+        },
+        {
+          name: 'Елена Димитрова',
+          role: 'Маркетинг специалист',
+          quote:
+            'Направихме таргетиран лендинг към ключова оферта: ясни ползи, социално доказателство и измерими цели от първия ден. Лидовете станаха повече и по-сериозни след кампаниите ни.',
+        },
+        {
+          name: 'Кристина Андреева',
+          role: 'Коуч по кариера',
+          quote:
+            'Преди губех хора между форма, календар и имейли. Новият лендинг и простият път за запис се оказаха малка промяна с голям ефект—планирам среща без счупени стъпки.',
+        },
+        {
+          name: 'Георги Петков',
+          role: 'Е-commerce операции',
+          quote:
+            'Подредихме продуктовите страници с по-добър UX, ясни SEO заглавия, по-бързо зареждане и по-малко объркване около доставки. По-малко изоставени колички след органично попадане.',
+        },
+        {
+          name: 'Стоян Михайлов',
+          role: 'Управител на B2B услуги',
+          quote:
+            'Позиционирането ни звучаше общо — подобрихме разказа за услугата, свързахме го с ключовите търсения и добавихме логични CTA точки. Входящите запитвания вече идват с по-ясни брифове.',
+        },
+        {
+          name: 'Анна Николова',
+          role: 'Съучредителка, технологичен стартъп',
+          quote:
+            'Липсваше ни професионална визитка онлайн: добра информационна архитектура, бързина и финни детайли за търсачки. Резултатът впечатли инвеститорите и улесни демото на продукта.',
+        },
+      ],
+    },
   },
 } as const;
 
@@ -147,6 +261,14 @@ export interface Translations {
   portfolio: { heading: string; sub: string; viewProject: string };
   showcase: { eyebrow: string; heading: string; sub: string; ariaLabel: string; imageAlt: string };
   contact: { eyebrow: string; heading: string; sub: string; primary: string; secondary: string };
+  testimonials: {
+    title: string;
+    sub: string;
+    overallRating: string;
+    overallRatingCaption: string;
+    badge: string;
+    reviews: ReadonlyArray<{ name: string; role: string; quote: string }>;
+  };
 }
 
 interface LangContextType {
