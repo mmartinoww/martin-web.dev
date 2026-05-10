@@ -1,4 +1,5 @@
 import Hero from '@/components/Hero';
+import WorkflowAutopilot from '@/components/WorkflowAutopilot';
 import Services from '@/components/Services';
 import ImageCarousel from '@/components/ImageCarousel';
 import Portfolio from '@/components/Portfolio';
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Hero />
+      <WorkflowAutopilot />
       <Services />
       <ImageCarousel />
       <Portfolio />

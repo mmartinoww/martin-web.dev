@@ -1,7 +1,7 @@
 'use client';
 
 import type { CSSProperties } from 'react';
-import { useId } from 'react';
+import { useEffect, useId, useMemo, useRef } from 'react';
 import { Playfair_Display } from 'next/font/google';
 import { useLang } from '@/contexts/LanguageContext';
 
@@ -96,8 +96,14 @@ function TestimonialStars({ variant = 'card' }: { variant?: 'card' | 'hero' }) {
 
 export default function Testimonials() {
   const { t } = useLang();
-  const odd = t.testimonials.reviews.filter((_, i) => i % 2 === 1);
-  const even = t.testimonials.reviews.filter((_, i) => i % 2 === 0);
+  const even = useMemo(
+    () => t.testimonials.reviews.filter((_, i) => i % 2 === 0),
+    [t.testimonials.reviews]
+  );
+  const odd = useMemo(
+    () => t.testimonials.reviews.filter((_, i) => i % 2 === 1),
+    [t.testimonials.reviews]
+  );
 
   return (
     <section
@@ -175,8 +181,78 @@ export default function Testimonials() {
 
 type TestimonialEntry = { name: string; role: string; quote: string };
 
+const MARQUEE_CYCLE_MS_FORWARD = 46_000;
+const MARQUEE_CYCLE_MS_REVERSE = 58_000;
+const MARQUEE_REPEAT_COPIES = 5;
+
+function useTestimonialMarquee(reviews: readonly TestimonialEntry[], reverse: boolean) {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el || reviews.length === 0) return;
+
+    let cyclePx = 0;
+    let reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const measureCyclePx = () => {
+      const items = el.children;
+      if (items.length < reviews.length * 2) return;
+
+      const first = items[0] as HTMLElement;
+      const secondSetFirst = items[reviews.length] as HTMLElement;
+      cyclePx = Math.max(0, secondSetFirst.offsetLeft - first.offsetLeft);
+    };
+
+    const mql = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const onMotionChange = (e: MediaQueryListEvent) => {
+      reduceMotion = e.matches;
+    };
+    mql.addEventListener('change', onMotionChange);
+
+    measureCyclePx();
+    const ro = new ResizeObserver(measureCyclePx);
+    ro.observe(el);
+    if (el.parentElement) ro.observe(el.parentElement);
+
+    const baseCycleMs = reverse ? MARQUEE_CYCLE_MS_REVERSE : MARQUEE_CYCLE_MS_FORWARD;
+    let raf = 0;
+    const t0 = performance.now();
+
+    const frame = (now: number) => {
+      if (cyclePx <= 0) {
+        measureCyclePx();
+      }
+
+      if (cyclePx > 0) {
+        const cycleMs = reduceMotion ? baseCycleMs * 1.7 : baseCycleMs;
+        const u = ((now - t0) % cycleMs) / cycleMs;
+        const dist = u * cyclePx;
+        const x = reverse ? -cyclePx + dist : -dist;
+        el.style.transform = `translate3d(${x}px, 0, 0)`;
+      }
+
+      raf = requestAnimationFrame(frame);
+    };
+
+    raf = requestAnimationFrame(frame);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+      mql.removeEventListener('change', onMotionChange);
+      el.style.transform = '';
+    };
+  }, [reviews, reverse]);
+
+  return trackRef;
+}
+
 function TestimonialRow({ reviews, reverse }: { reviews: readonly TestimonialEntry[]; reverse: boolean }) {
-  const loop = [...reviews, ...reviews];
+  const loop = Array.from({ length: MARQUEE_REPEAT_COPIES }, (_, copyIndex) =>
+    reviews.map((review, reviewIndex) => ({ review, copyIndex, reviewIndex }))
+  ).flat();
+  const trackRef = useTestimonialMarquee(reviews, reverse);
 
   return (
     <div
@@ -194,11 +270,13 @@ function TestimonialRow({ reviews, reverse }: { reviews: readonly TestimonialEnt
       />
       <div className="relative z-[1] min-w-0 max-w-full overflow-x-clip py-3">
         <div
-          className={`testimonials-track flex w-max gap-3 sm:gap-4 md:gap-5 ${reverse ? 'testimonials-track-reverse' : ''}`}
+          ref={trackRef}
+          data-testid={reverse ? 'testimonials-marquee-rtl' : 'testimonials-marquee-ltr'}
+          className="testimonials-marquee-strip flex w-max gap-3 sm:gap-4 md:gap-5"
         >
-          {loop.map((r, i) => (
+          {loop.map(({ review: r, copyIndex, reviewIndex }) => (
             <article
-              key={`${r.name}-${i}`}
+              key={`${r.name}-${copyIndex}-${reviewIndex}`}
               role="listitem"
               className="testimonials-card w-[min(22rem,calc(100svw-2.5rem))] shrink-0 rounded-2xl px-5 py-4 md:w-[24rem] md:px-6 md:py-5"
             >
