@@ -1243,8 +1243,7 @@ main {
 
 /* ── Workflow to Autopilot section ───────────────────────────────────── */
 
-.autopilot-section {
-  min-height: clamp(680px, 84svh, 860px);
+.autopilot-section {  
   display: flex;
   align-items: center;
   background: transparent;
@@ -1356,7 +1355,8 @@ main {
 }
 
 .autopilot-heading__workflow,
-.autopilot-heading__autopilot {
+.autopilot-heading__autopilot { 
+  font-size: 40px; 
   position: relative;
   z-index: 1;
   display: inline-block;
@@ -1366,6 +1366,12 @@ main {
     filter 0.58s ease,
     text-shadow 0.58s ease,
     transform 0.58s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (min-width: 768px) {
+  .autopilot-heading__workflow,
+  .autopilot-heading__autopilot {
+    font-size: 60px;
+  }
 }
 
 .autopilot-heading__workflow {
@@ -1403,8 +1409,8 @@ main {
 }
 
 .autopilot-section--on .autopilot-subtitle {
-  color: rgba(226, 232, 255, 0.58);
-  text-shadow: 0 0 28px rgba(125, 211, 252, 0.22);
+  color: rgba(248, 250, 255, 0.84);
+  text-shadow: 0 0 20px rgba(125, 211, 252, 0.18);
 }
 
 .autopilot-switch {
@@ -1443,8 +1449,8 @@ main {
   height: 100%;
   border-radius: inherit;
   isolation: isolate;
-  background: linear-gradient(180deg, #f6f7f9 0%, #e5e7eb 100%);
-  border: 1px solid rgba(224, 224, 224, 0.72);
+  background: linear-gradient(180deg, #ffffff 0%, #e5e7eb 100%); 
+  border: 1px solid #FFFFFF; 
   box-shadow:
     0 18px 42px rgba(179, 179, 179, 0.28),
     0 3px 10px rgba(205, 205, 206, 0.2),
@@ -1724,7 +1730,7 @@ main {
   overflow: hidden;
   border-radius: 0.66rem;
   padding: 0.74rem 1.05rem;
-  background: rgba(255, 255, 255, 0.92);
+  background: #ffffffeb;
   border: 1px solid rgba(255, 255, 255, 0.82);
   color: rgba(20, 20, 20, 0.62);
   box-shadow:
@@ -1760,9 +1766,9 @@ main {
 }
 
 .autopilot-section--on .autopilot-task--complete {
-  background: rgba(255, 255, 255, 0.11);
-  border-color: rgba(255, 255, 255, 0.15);
-  color: rgba(246, 249, 255, 0.82);
+  background: #ffffff3b;
+  border-color: #ffffff52;
+  color: #f6f9ffe6;
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.2),
     0 0 0 1px rgba(255, 255, 255, 0.08) inset,
@@ -1819,20 +1825,14 @@ main {
 
 .autopilot-task__check-icon {
   position: absolute;
-  inset: 0.2rem;
-  width: auto;
-  height: auto;
-  fill: none;
-  stroke: #1f2937;
-  stroke-width: 2.25;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.autopilot-task__check-icon path {
-  stroke-dasharray: 18;
-  stroke-dashoffset: 18;
-  transition: stroke-dashoffset 0.46s ease;
+  left: 50%;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  transform: translate(-50%, -50%);
+  color: #1f2937;
+  opacity: 0;
+  transition: opacity 0.46s ease;
 }
 
 .autopilot-task__label {
@@ -1875,8 +1875,8 @@ main {
   transform: scale(0.2);
 }
 
-.autopilot-task--complete .autopilot-task__check-icon path {
-  stroke-dashoffset: 0;
+.autopilot-task--complete .autopilot-task__check-icon {
+  opacity: 1;
 }
 
 .autopilot-task--complete .autopilot-task__complete {
@@ -1993,9 +1993,7 @@ main {
 
 @media (max-width: 767px) {
   .autopilot-section {
-    min-height: 690px;
-    align-items: flex-start;
-    padding-top: 6.5rem;
+    align-items: flex-start; 
   }
 
   .autopilot-heading {

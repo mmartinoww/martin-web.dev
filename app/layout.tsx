@@ -3,6 +3,7 @@ import { Montserrat } from 'next/font/google';
 import Navigation from '@/components/Navigation';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { LanguageProvider } from '@/contexts/LanguageContext';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import './globals.css';
 
 const montserrat = Montserrat({

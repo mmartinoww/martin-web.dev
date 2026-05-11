@@ -1,6 +1,11 @@
 'use client';
 
+import { config } from '@fortawesome/fontawesome-svg-core';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState, type CSSProperties } from 'react';
+
+config.autoAddCss = false;
 
 type ConfettiPiece = {
   x: number;
@@ -121,7 +126,7 @@ export default function WorkflowAutopilot() {
   return (
     <section
       id="workflow-autopilot"
-      className={`autopilot-section relative isolate overflow-visible px-4 py-20 md:py-28 ${isOn ? 'autopilot-section--on' : ''}`}
+      className={`autopilot-section relative isolate overflow-visible px-4 py-10 md:py-20 ${isOn ? 'autopilot-section--on' : ''}`}
       aria-labelledby="workflow-autopilot-heading"
     >
       <div className="autopilot-bg-pale" aria-hidden />
@@ -152,7 +157,7 @@ export default function WorkflowAutopilot() {
       <div className="relative z-[2] mx-auto flex max-w-5xl flex-col items-center text-center">
         <h2
           id="workflow-autopilot-heading"
-          className="autopilot-heading mb-7 flex flex-col items-center justify-center gap-x-4 gap-y-2 text-[clamp(2.6rem,7vw,5.6rem)] font-black leading-[0.98] tracking-[-0.07em]"
+          className="autopilot-heading mb-7 flex flex-col items-center justify-center gap-x-4 gap-y-2 font-black leading-[0.98] tracking-[-0.07em]"
         >
           <span className="autopilot-heading__workflow mb-1">Преди Мартин</span>
           <button
@@ -210,9 +215,12 @@ export default function WorkflowAutopilot() {
               role="listitem"
             >
               <span className="autopilot-task__check" aria-hidden>
-                <svg viewBox="0 0 16 16" className="autopilot-task__check-icon">
-                  <path d="M4.1 8.3 6.7 11 12 5.2" />
-                </svg>
+                <FontAwesomeIcon
+                  icon={faCheck}
+                  className="autopilot-task__check-icon"
+                  width={4}
+                  height={4}
+                />
               </span>
               <span className="autopilot-task__label">{task}</span>
               <span className="autopilot-task__complete">Complete</span>
