@@ -1,45 +1,20 @@
 'use client';
 
+import { config } from '@fortawesome/fontawesome-svg-core';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { useLang } from '@/contexts/LanguageContext';
+import { RADIAL_CONFETTI_PIECES } from '@/lib/radialConfetti';
 
-type CtaConfettiPiece = {
-  x: number;
-  y: number;
-  r: number;
-  delay: number;
-  w: number;
-  h: number;
-  bg: string;
-};
-
-/** Decorative burst aligned with gradient CTA (hover / focus-visible) */
-const CTA_CONFETTI_PIECES: CtaConfettiPiece[] = [
-  { x: 54, y: -26, r: 18, delay: 0, w: 4, h: 13, bg: '#ffffff' },
-  { x: -52, y: -30, r: -22, delay: 0.02, w: 5, h: 10, bg: '#ccf8ff' },
-  { x: 36, y: -44, r: -40, delay: 0.04, w: 6, h: 7, bg: '#00d4ff' },
-  { x: -40, y: -38, r: 52, delay: 0.01, w: 4, h: 12, bg: '#fff9c4' },
-  { x: 62, y: 8, r: -12, delay: 0.03, w: 5, h: 9, bg: '#ffffff' },
-  { x: -58, y: 4, r: 28, delay: 0.05, w: 4, h: 11, bg: '#e9d5ff' },
-  { x: 48, y: 32, r: 35, delay: 0.02, w: 6, h: 8, bg: '#7c3aed' },
-  { x: -44, y: 38, r: -18, delay: 0.04, w: 5, h: 10, bg: '#ffffff' },
-  { x: 8, y: -58, r: 8, delay: 0.06, w: 4, h: 12, bg: '#a5f3fc' },
-  { x: -12, y: -52, r: -55, delay: 0.03, w: 7, h: 6, bg: '#fbcfe8' },
-  { x: 72, y: -8, r: 42, delay: 0.05, w: 4, h: 13, bg: '#fde68a' },
-  { x: -68, y: -12, r: -34, delay: 0.01, w: 5, h: 9, bg: '#ffffff' },
-  { x: 28, y: 48, r: 22, delay: 0.04, w: 5, h: 8, bg: '#bae6fd' },
-  { x: -32, y: 52, r: -46, delay: 0.02, w: 6, h: 7, bg: '#ddd6fe' },
-  { x: 76, y: 24, r: -20, delay: 0.06, w: 4, h: 11, bg: '#ffffff' },
-  { x: -70, y: 28, r: 48, delay: 0.03, w: 5, h: 10, bg: '#fef08a' },
-  { x: -2, y: 58, r: 14, delay: 0.05, w: 5, h: 9, bg: '#cffafe' },
-  { x: 18, y: -36, r: -28, delay: 0.02, w: 7, h: 7, bg: '#fdf4ff' },
-];
+config.autoAddCss = false;
 
 export default function Hero() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
   const containerRef = useRef<HTMLElement | null>(null);
   const [cursor, setCursor] = useState({ x: '50%', y: '50%' });
+  const [ctaConfettiBurst, setCtaConfettiBurst] = useState(0);
 
   /* Mouse parallax follow */
   useEffect(() => {
@@ -134,40 +109,50 @@ export default function Hero() {
 
                 <div className="anim-fade-up-3 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <Link
-                    href="#portfolio"
+                    href={lang === 'bg' ? '#contact' : '#portfolio'}
+                    onClick={() => setCtaConfettiBurst((id) => id + 1)}
                     className="cta-main-pop group relative px-8 py-3.5 rounded-full font-extrabold text-white text-sm overflow-visible"
                     style={{
                       background: 'linear-gradient(135deg, #006dff 0%, #00d4ff 52%, #7c3aed 100%)',
                       boxShadow: '0 14px 44px var(--accent-glow)',
                     }}
                   >
-                    <span className="cta-confetti" aria-hidden>
-                      {CTA_CONFETTI_PIECES.map((p, i) => (
-                        <span
-                          key={i}
-                          className="cta-confetti-chip"
-                          style={
-                            {
-                              '--cta-x': `${p.x}px`,
-                              '--cta-y': `${p.y}px`,
-                              '--cta-r': `${p.r}deg`,
-                              width: p.w,
-                              height: p.h,
-                              background: p.bg,
-                              animationDelay: `${p.delay}s`,
-                            } as CSSProperties
-                          }
-                        />
-                      ))}
+                    {ctaConfettiBurst > 0 ? (
+                      <span key={ctaConfettiBurst} className="autopilot-confetti" aria-hidden>
+                        {RADIAL_CONFETTI_PIECES.map((piece, index) => (
+                          <span
+                            key={index}
+                            className="autopilot-confetti__piece"
+                            style={
+                              {
+                                '--confetti-x': `${piece.x}px`,
+                                '--confetti-y': `${piece.y}px`,
+                                '--confetti-mid-x': `${piece.x * 0.58}px`,
+                                '--confetti-mid-y': `${piece.y * 0.58}px`,
+                                '--confetti-r': `${piece.r}deg`,
+                                width: piece.w,
+                                height: piece.h,
+                                background: piece.bg,
+                                animationDelay: `${piece.delay}s`,
+                              } as CSSProperties
+                            }
+                          />
+                        ))}
+                      </span>
+                    ) : null}
+                    <span className="relative z-[22] inline-flex items-center justify-center gap-2">
+                      {lang === 'bg' ? (
+                        <FontAwesomeIcon icon={faPhone} className="h-3.5 w-3.5 shrink-0 opacity-[0.95]" aria-hidden />
+                      ) : null}
+                      {t.hero.cta1}
                     </span>
-                    <span className="relative z-[22]">{t.hero.cta1}</span>
                     <span
                       className="pointer-events-none absolute inset-0 z-[12] rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
                       style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.26), transparent)' }}
                     />
                   </Link>
                   <Link
-                    href="#services"
+                    href={lang === 'bg' ? '#portfolio' : '#services'}
                     className="px-8 py-3.5 rounded-full font-bold text-sm transition-all duration-300 hover:scale-[1.04]"
                     style={{
                       background: 'var(--bg-glass-strong)',

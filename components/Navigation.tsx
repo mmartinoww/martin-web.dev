@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useLang } from '@/contexts/LanguageContext';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -42,17 +43,24 @@ export default function Navigation() {
   const close = useCallback(() => setMenuOpen(false), []);
 
   const navLinks = [
+    { href: '#services', label: t.nav.services },
+    { href: '#workflow-autopilot', label: t.nav.advantages },
+    { href: '#rabota', label: t.nav.work },
     { href: '#portfolio', label: t.nav.portfolio },
-    { href: '#services',  label: t.nav.services  },
-    { href: '#contact',   label: t.nav.contact    },
+    { href: '#testimonials', label: t.nav.testimonials },
+    { href: '#contact', label: t.nav.contacts },
   ];
 
   return (
     <>
       {/* ── Header ── */}
       <header
-        className="fixed top-0 inset-x-0 z-50 flex flex-col items-center"
-        style={{ paddingTop: 'max(12px, env(safe-area-inset-top, 0px))', paddingLeft: '1rem', paddingRight: '1rem' }}
+        className="fixed top-0 inset-x-0 z-50 flex flex-col items-center backdrop-blur-[6px]"
+        style={{
+          paddingTop: 'max(12px, env(safe-area-inset-top, 0px))',
+          paddingLeft: '1rem',
+          paddingRight: '1rem',
+        }}
       >
         <nav
           className={`glass-nav rounded-3xl flex items-center justify-between w-full max-w-6xl transition-all duration-300 ${
@@ -63,14 +71,21 @@ export default function Navigation() {
           {/* Logo */}
           <Link
             href="/"
-            className="text-xl font-black gradient-text tracking-[-0.04em] shrink-0"
+            className="block shrink-0 transition-opacity hover:opacity-90"
             aria-label="Home"
           >
-            Martin.dev
+            <Image
+              src="/identity/martin-web-dev-logo-webp.webp"
+              alt=""
+              width={2478}
+              height={1892}
+              className="h-10 w-auto md:h-11"
+              priority
+            />
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-7">
+          <div className="hidden md:flex md:flex-wrap md:justify-end items-center gap-x-4 gap-y-1 lg:gap-x-5">
             {navLinks.map((l) => (
               <Link key={l.href} href={l.href} className="nav-link">
                 {l.label}
@@ -114,40 +129,49 @@ export default function Navigation() {
           </div>
         </nav>
 
-        {/* Mobile drawer */}
-        {menuOpen && (
-          <div
-            id="mobile-drawer"
-            className="md:hidden glass-nav rounded-2xl w-full max-w-5xl mt-2 px-4 py-4 flex flex-col gap-1"
-          >
-            {navLinks.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                onClick={close}
-                className="block px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200"
-                style={{ color: 'var(--text-secondary)', border: '1px solid var(--border-glass)' }}
-              >
-                {l.label}
-              </Link>
-            ))}
-            <div className="flex items-center justify-between mt-2 pt-3" style={{ borderTop: '1px solid var(--border-glass)' }}>
-              <LanguageToggle size="sm" />
-              <ThemeToggle size="sm" />
+        {/* Mobile drawer — smooth expand/collapse (CSS grid rows) */}
+        <div
+          className={`md:hidden grid w-full max-w-5xl overflow-hidden transition-[grid-template-rows,margin-top] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:duration-0 ${
+            menuOpen ? 'grid-rows-[1fr] mt-2' : 'grid-rows-[0fr] mt-0'
+          }`}
+        >
+          <div className="min-h-0 overflow-hidden">
+            <div
+              id="mobile-drawer"
+              inert={!menuOpen ? true : undefined}
+              className={`glass-nav flex flex-col gap-1 rounded-2xl px-4 py-4 transition-opacity duration-300 ease-out motion-reduce:transition-none ${
+                menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+              }`}
+            >
+              {navLinks.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  onClick={close}
+                  className="block rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200"
+                  style={{ color: 'var(--text-secondary)', border: '1px solid var(--border-glass)' }}
+                >
+                  {l.label}
+                </Link>
+              ))}
+              <div className="mt-2 flex items-center justify-between pt-3" style={{ borderTop: '1px solid var(--border-glass)' }}>
+                <LanguageToggle size="sm" />
+                <ThemeToggle size="sm" />
+              </div>
             </div>
           </div>
-        )}
+        </div>
       </header>
 
-      {/* Backdrop */}
-      {menuOpen && (
-        <div
-          className="md:hidden fixed inset-0 z-40"
-          style={{ background: 'rgba(0,4,12,0.55)', backdropFilter: 'blur(4px)' }}
-          onClick={close}
-          aria-hidden="true"
-        />
-      )}
+      {/* Backdrop — fades in/out with menu */}
+      <div
+        className={`fixed inset-0 z-40 md:hidden transition-opacity duration-300 ease-out motion-reduce:transition-none ${
+          menuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+        style={{ background: 'rgba(0,4,12,0.55)', backdropFilter: 'blur(4px)' }}
+        onClick={close}
+        aria-hidden="true"
+      />
     </>
   );
 }

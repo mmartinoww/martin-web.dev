@@ -15,7 +15,7 @@
   --text-primary:    #031225;
   --text-secondary:  #24486f;
   --text-muted:      #5f7ea5;
-  --accent:          #006dff;
+  --accent:          #006dff; 
   --accent2:         #00d4ff;
   --accent3:         #7c3aed;
   --accent-glow:     rgba(0, 109, 255, 0.40);
@@ -477,10 +477,11 @@ main {
     opacity: 0 !important;
   }
 
-  .cta-main-pop:hover .cta-confetti-chip,
-  .cta-main-pop:focus-visible .cta-confetti-chip {
+  .cta-main-pop .autopilot-confetti,
+  .cta-main-pop .autopilot-confetti__piece {
     animation: none !important;
     opacity: 0 !important;
+    display: none !important;
   }
 }
 
@@ -516,33 +517,9 @@ main {
   animation: cta-main-flash 0.52s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Burst from pill center — small rectangles spin and fall like confetti */
-.cta-confetti {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 0;
-  height: 0;
-  overflow: visible;
-  pointer-events: none;
-  z-index: 38;
-}
-
-.cta-confetti-chip {
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: block;
-  border-radius: 1px;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
-  opacity: 0;
-  animation: none;
-}
-
-.cta-main-pop:hover .cta-confetti-chip,
-.cta-main-pop:focus-visible .cta-confetti-chip {
-  animation:
-    cta-confetti-pop 0.94s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+/* Hero primary CTA: Workflow-style radial burst; below label (z-22) */
+.cta-main-pop .autopilot-confetti {
+  z-index: 15;
 }
 
 @keyframes cta-main-flash {
@@ -556,32 +533,6 @@ main {
   100% {
     opacity: 0;
     transform: scale(1.14);
-  }
-}
-
-@keyframes cta-confetti-pop {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) rotate(var(--cta-r, 0deg)) scale(0.12);
-  }
-  10% {
-    opacity: 1;
-  }
-  26% {
-    opacity: 1;
-    transform: translate(-50%, -50%) rotate(calc(var(--cta-r, 0deg) * 3 + 95deg))
-      translate(calc(var(--cta-x, 0px) * 0.42), calc(var(--cta-y, 0px) * 0.42))
-      scale(1.05);
-  }
-  100% {
-    opacity: 0;
-    transform:
-      translate(
-        calc(-50% + var(--cta-x, 0px)),
-        calc(-50% + var(--cta-y, 0px) + 62px)
-      )
-      rotate(calc(var(--cta-r, 0deg) + 920deg))
-      scale(0.35);
   }
 }
 
@@ -1035,6 +986,147 @@ main {
 @media (prefers-reduced-motion: reduce) {
   .service-card:hover,
   .project-card:hover { transform: none; }
+}
+
+/* ── Services fan (middle elevated & front, sides partially behind) ───── */
+
+.services-fan-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .services-fan-wrap {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 0;
+    padding: 2.75rem 0 0.25rem;
+    overflow: visible;
+  }
+
+  .services-fan-wrap .service-card {
+    flex: 0 1 300px;
+    max-width: 300px;
+    width: 100%;
+    transform-origin: 50% 100%;
+  }
+
+  .services-fan-wrap .service-card:nth-child(1) {
+    z-index: 1;
+    margin-right: -3.75rem;
+    transform: translateX(-3.25rem) rotate(-6deg);
+  }
+
+  .services-fan-wrap .service-card:nth-child(2) {
+    z-index: 2;
+    margin-left: -2.25rem;
+    margin-right: -2.25rem;
+    transform: translateY(-20px);
+  }
+
+  .services-fan-wrap .service-card:nth-child(3) {
+    z-index: 1;
+    margin-left: -3.75rem;
+    transform: translateX(3.25rem) rotate(6deg);
+  }
+}
+
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .services-fan-wrap .service-card:nth-child(1):hover {
+    transform: translateX(-3.25rem) rotate(-6deg) translateY(-6px);
+    box-shadow:
+      0 0 0 1px var(--border-rim),
+      var(--shadow-glass),
+      0 0 32px var(--accent-glow);
+  }
+
+  .services-fan-wrap .service-card:nth-child(2):hover {
+    transform: translateY(calc(-20px - 6px));
+    box-shadow:
+      0 0 0 1px var(--border-rim),
+      var(--shadow-glass),
+      0 0 32px var(--accent-glow);
+  }
+
+  .services-fan-wrap .service-card:nth-child(3):hover {
+    transform: translateX(3.25rem) rotate(6deg) translateY(-6px);
+    box-shadow:
+      0 0 0 1px var(--border-rim),
+      var(--shadow-glass),
+      0 0 32px var(--accent-glow);
+  }
+}
+
+@media (min-width: 768px) and (prefers-reduced-motion: reduce) {
+  .services-fan-wrap {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-top: 0;
+  }
+
+  .services-fan-wrap .service-card:nth-child(1),
+  .services-fan-wrap .service-card:nth-child(2),
+  .services-fan-wrap .service-card:nth-child(3) {
+    margin-left: 0;
+    margin-right: 0;
+    transform: none;
+  }
+
+  .services-fan-wrap .service-card:nth-child(1):hover,
+  .services-fan-wrap .service-card:nth-child(2):hover,
+  .services-fan-wrap .service-card:nth-child(3):hover {
+    transform: none;
+  }
+}
+
+/* ── Card padding-x: −33% under 1024px (preserve Tailwind vertical padding) ─ */
+
+@media (max-width: 1023px) {
+  .service-card.glass {
+    padding-left: calc(2rem * 0.67);
+    padding-right: calc(2rem * 0.67);
+  }
+
+  .project-card > div.p-6 {
+    padding-left: calc(1.5rem * 0.67);
+    padding-right: calc(1.5rem * 0.67);
+  }
+
+  .detail-glass-panel {
+    padding-left: calc(1.75rem * 0.67);
+    padding-right: calc(1.75rem * 0.67);
+  }
+
+  .detail-glass-panel--sidebar {
+    padding-left: calc(1.5rem * 0.67);
+    padding-right: calc(1.5rem * 0.67);
+  }
+}
+
+@media (max-width: 767px) {
+  .testimonials-card {
+    padding-left: calc(1.25rem * 0.67);
+    padding-right: calc(1.25rem * 0.67);
+  }
+
+  .hero-card {
+    padding-left: calc(1.75rem * 0.67);
+    padding-right: calc(1.75rem * 0.67);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .testimonials-card {
+    padding-left: calc(1.5rem * 0.67);
+    padding-right: calc(1.5rem * 0.67);
+  }
+
+  .hero-card {
+    padding-left: calc(3.5rem * 0.67);
+    padding-right: calc(3.5rem * 0.67);
+  }
 }
 
 /* ── 3D image carousel ───────────────────────────────────────────────── */
@@ -1727,7 +1819,7 @@ main {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   min-height: 3.05rem;
-  overflow: hidden;
+  overflow: hidden; 
   border-radius: 0.66rem;
   padding: 0.74rem 1.05rem;
   background: #ffffffeb;
@@ -1743,6 +1835,13 @@ main {
     box-shadow 0.58s ease,
     color 0.48s ease,
     transform 0.58s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 1023px) {
+  .autopilot-task {
+    padding-left: calc(1.05rem * 0.67);
+    padding-right: calc(1.05rem * 0.67);
+  }
 }
 
 .autopilot-task::before {
@@ -1822,7 +1921,7 @@ main {
   transform: scale(1);
   pointer-events: none;
 }
-
+ 
 .autopilot-task__check-icon {
   position: absolute;
   left: 50%;
@@ -1882,6 +1981,92 @@ main {
 .autopilot-task--complete .autopilot-task__complete {
   opacity: 1;
   transform: translateX(0) scale(1);
+}
+
+/* Dark theme: workflow section — most rules are off-state only; .autopilot-bg-pale is always dark in dark mode
+ * so the pale→hero crossfade never briefly shows the default white gradient. */
+[data-theme="dark"] .autopilot-bg-pale {
+  background:
+    radial-gradient(ellipse 46% 36% at 14% 20%, rgba(59, 130, 246, 0.22), transparent 74%),
+    radial-gradient(ellipse 44% 34% at 86% 22%, rgba(56, 189, 248, 0.14), transparent 76%),
+    radial-gradient(ellipse 50% 38% at 52% 88%, rgba(99, 102, 241, 0.16), transparent 78%),
+    linear-gradient(180deg, #020817 0%, #051028 45%, #04152f 100%);
+}
+
+[data-theme="dark"] .autopilot-section:not(.autopilot-section--on) .autopilot-heading {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .autopilot-section:not(.autopilot-section--on) .autopilot-heading__workflow {
+  color: #e8efff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="dark"] .autopilot-section:not(.autopilot-section--on) .autopilot-heading__autopilot {
+  color: rgba(199, 221, 255, 0.5);
+}
+
+[data-theme="dark"] .autopilot-section:not(.autopilot-section--on) .autopilot-subtitle {
+  color: color-mix(in srgb, var(--text-secondary) 88%, transparent);
+}
+
+[data-theme="dark"] .autopilot-section:not(.autopilot-section--on) .autopilot-switch {
+  border-color: rgba(125, 211, 252, 0.32) !important;
+  filter: drop-shadow(0 0 18px rgba(0, 212, 255, 0.12));
+}
+
+[data-theme="dark"] .autopilot-section:not(.autopilot-section--on) .autopilot-switch__track {
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.45),
+    0 3px 12px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+    inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .autopilot-section:not(.autopilot-section--on) .autopilot-switch__track::after {
+  background:
+    radial-gradient(circle at 22% 24%, rgba(255, 255, 255, 0.12), transparent 38%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(15, 23, 42, 0.55));
+}
+
+[data-theme="dark"] .autopilot-section:not(.autopilot-section--on) .autopilot-switch:hover .autopilot-switch__track {
+  border-color: rgba(125, 211, 252, 0.45);
+  box-shadow:
+    0 22px 52px rgba(0, 0, 0, 0.55),
+    0 4px 14px rgba(0, 212, 255, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+    inset 0 1px 2px rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .autopilot-section:not(.autopilot-section--on) .autopilot-switch__thumb-face--light {
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.9), transparent 32%),
+    linear-gradient(145deg, #f1f5f9, #94a3b8);
+}
+
+[data-theme="dark"] .autopilot-section:not(.autopilot-section--on) .autopilot-task {
+  background: rgba(6, 23, 55, 0.78);
+  border: 1px solid rgba(148, 213, 255, 0.2);
+  color: color-mix(in srgb, var(--text-primary) 92%, transparent);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.35),
+    0 1px 0 rgba(255, 255, 255, 0.06) inset;
+}
+
+[data-theme="dark"] .autopilot-section:not(.autopilot-section--on) .autopilot-task::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+[data-theme="dark"] .autopilot-section:not(.autopilot-section--on) .autopilot-task__check {
+  background: rgba(15, 23, 42, 0.92);
+  border-color: rgba(148, 163, 184, 0.28);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="dark"] .autopilot-section:not(.autopilot-section--on) .autopilot-task__check::before {
+  background: rgba(226, 232, 255, 0.5);
 }
 
 @keyframes autopilot-switch-activate {
@@ -2015,7 +2200,7 @@ main {
   .autopilot-task {
     grid-template-columns: auto 1fr;
     min-height: 2.9rem;
-    padding-inline: 0.92rem;
+    padding-inline: calc(0.92rem * 0.67);
   }
 
   .autopilot-task__complete {

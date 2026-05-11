@@ -8,12 +8,12 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="py-24 px-4"
+      className="px-4 py-10 md:py-20"
       style={{ background: 'var(--bg-section)' }}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-xl lg:max-w-6xl mx-auto">
         {/* Heading */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <p
             className="text-xs uppercase tracking-[0.3em] font-semibold mb-3"
             style={{ color: 'var(--accent)' }}
@@ -34,8 +34,8 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Cards — mobile stack; md+ symmetrical fan (middle front, sides tucked & rotated) */}
+        <div className="services-fan-wrap">
           {t.services.items.map((service) => (
             <div
               key={service.title}

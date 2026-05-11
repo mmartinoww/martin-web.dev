@@ -19,7 +19,7 @@ export default function ImageCarousel() {
   const step = 360 / carouselImages.length;
 
   return (
-    <section className="image-carousel-section px-4 pt-12 pb-16 md:pb-0">
+    <section id="rabota" className="image-carousel-section px-4 pt-12 pb-16 md:pb-0">
       <div className="mx-auto max-w-6xl">
         <div className="text-center lg:mb-20">
           <p

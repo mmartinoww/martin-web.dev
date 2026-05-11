@@ -77,7 +77,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
               </p>
             </div>
 
-            <div className="glass rounded-2xl p-7">
+            <div className="glass rounded-2xl p-7 detail-glass-panel">
               <h3 className="text-lg font-bold mb-5" style={{ color: 'var(--text-primary)' }}>
                 Key Features
               </h3>
@@ -97,7 +97,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <div className="glass rounded-2xl p-6 sticky top-24 space-y-6">
+            <div className="glass rounded-2xl p-6 sticky top-24 space-y-6 detail-glass-panel detail-glass-panel--sidebar">
               <h3 className="text-lg font-bold" style={{ color: 'var(--text-primary)' }}>
                 Project Details
               </h3>

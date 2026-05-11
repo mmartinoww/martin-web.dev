@@ -7,57 +7,60 @@ export type Lang = 'en' | 'bg';
 export const translations = {
   en: {
     nav: {
-      portfolio: 'Portfolio',
       services: 'Services',
-      contact: 'Contact',
+      advantages: 'Advantages',
+      work: 'Work',
+      portfolio: 'Portfolio',
+      testimonials: 'Testimonials',
+      contacts: 'Contact',
     },
     hero: {
-      eyebrow: 'Frontend · Design · Interaction',
-      headline: 'Crafting immersive, high-performance\nexperiences for the modern web',
-      sub: 'I blend design systems, animation, and engineering to deliver products that feel fast, look polished, and convert.',
-      cta1: 'View Work',
-      cta2: 'Services',
+      eyebrow: 'Ranking · Design · Conversion',
+      headline: 'Crafting immersive, high-performance\nwebsites so your business can sell',
+      sub: 'I blend beautiful designs, strong presence in search engines and best practices to deliver products that feel fast, look polished, and convert.',
+      cta1: 'Contact me',
+      cta2: 'View my work',
     },
     chips: [
-      { label: 'Next.js', icon: '▲', color: '#3b82f6', glow: 'rgba(59,130,246,0.35)' },
+      { label: 'Speed', icon: '⚡', color: '#3b82f6', glow: 'rgba(59,130,246,0.35)' },
       { label: 'Design',  icon: '🎨', color: '#8b5cf6', glow: 'rgba(139,92,246,0.35)' },
-      { label: 'Figma',   icon: '🖊️', color: '#ec4899', glow: 'rgba(236,72,153,0.35)' },
-      { label: 'SEO',     icon: '🔍', color: '#10b981', glow: 'rgba(16,185,129,0.35)' },
+      { label: 'Clicks',   icon: '👆', color: '#ec4899', glow: 'rgba(236,72,153,0.35)' },
+      { label: 'Presence',     icon: '🔍', color: '#10b981', glow: 'rgba(16,185,129,0.35)' },
       { label: 'Revenue', icon: '💰', color: '#f59e0b', glow: 'rgba(245,158,11,0.35)' },
     ],
     services: {
       heading: 'My Services',
-      sub: 'Comprehensive solutions for your digital needs',
+      sub: 'You don\'t need an entire agency. You need one Martin.',
       items: [
         {
-          title: 'Frontend Development',
-          description: 'Building responsive, performant web applications using modern frameworks and best practices.',
-          features: ['React & Next.js', 'TypeScript', 'Responsive Design', 'Performance Optimization'],
-          icon: '⚡',
-        },
-        {
-          title: 'UI/UX Design',
-          description: 'Creating intuitive, beautiful interfaces that provide exceptional user experiences.',
-          features: ['User-Centered Design', 'Prototyping', 'Design Systems', 'Accessibility'],
+          title: 'Workflow from A to Z',
+          description: 'I will build everything - from your brand identity, through your website, to your connection with customers.',
+          features: ['Brand identity', 'Conversive Website', 'Beautiful designs', 'More customers'],
           icon: '🎨',
         },
         {
-          title: 'Web Optimization',
-          description: 'Ensuring your website loads fast, ranks well, and converts visitors into customers.',
-          features: ['SEO Optimization', 'Performance Tuning', 'Core Web Vitals', 'Analytics Integration'],
+          title: 'More customers, more work',
+          description: 'Increase your customers with an effective website that attracts attention and converts clicks into calls.',
+          features: ['Increase customers', 'Quality for the price', 'Optimal investment', 'Guaranteed results'],
+          icon: '⚡',
+        },
+        {
+          title: 'Top Optimization',
+          description: 'Your website loads fast, ranks well, and turns visitors into customers.',
+          features: ['SEO Optimization', 'Building authority', 'High performance', 'Analytics'],
           icon: '📈',
         },
       ],
     },
     portfolio: {
       heading: 'Featured Projects',
-      sub: 'A selection of recent work showcasing design and development expertise',
+      sub: 'A glimpse of my work with clients, which are more than just business partners already. More than 2 years of converting clicks into cash for their businesses, still going strong.',
       viewProject: 'View Project →',
     },
     showcase: {
       eyebrow: 'Visual Direction',
-      heading: 'A rotating 3D gallery with square cards',
-      sub: 'A cinematic image reel that adds motion, depth, and a futuristic product-showcase feel to the page.',
+      heading: 'A glimpse of my work',
+      sub: 'When you see the projects, you see my personal relationship with each partner and their business.',
       ariaLabel: 'Rotating image carousel',
       imageAlt: 'Carousel image',
     },
@@ -67,6 +70,25 @@ export const translations = {
       sub: 'Tell me what you are building and I will help shape the design, stack, and growth path.',
       primary: 'Contact me',
       secondary: 'Back to top',
+    },
+    workflow: {
+      headingBefore: 'Before Martin',
+      headingAfter: 'After Martin',
+      subOff:
+        'Want prospects to actually find your site? Want clicks to turn into calls and booked work — all without overspending?',
+      subOn:
+        'You get standout design, fast development, and a flow that gets clients calling before they finish reading. Maximum ROI from your site.',
+      ariaToggleOn: 'Turn autopilot on',
+      ariaToggleOff: 'Turn autopilot off',
+      taskComplete: 'Complete',
+      tasks: [
+        'Eye-catching design',
+        'Blazing speed scores',
+        'SEO built to rank on Google',
+        'Quality development, shipped fast',
+        'Happy clients at sensible investment',
+        'The phone rings — you\'ve got a new client!',
+      ],
     },
     testimonials: {
       title: 'Wall of Love',
@@ -128,57 +150,60 @@ export const translations = {
   },
   bg: {
     nav: {
-      portfolio: 'Портфолио',
       services: 'Услуги',
-      contact: 'Контакт',
+      advantages: 'Предимства',
+      work: 'Работа',
+      portfolio: 'Портфолио',
+      testimonials: 'Отзиви',
+      contacts: 'Контакти',
     },
     hero: {
-      eyebrow: 'Frontend · Дизайн · Интеракция',
-      headline: 'Създавам потапящи, бързи\nизживявания за модерния уеб',
-      sub: 'Комбинирам дизайн системи, анимация и инженерство, за да доставя продукти, които се усещат бързо, изглеждат полирани и конвертират.',
-      cta1: 'Виж Проектите',
-      cta2: 'Услуги',
+      eyebrow: 'Класиране · Дизайн · Конверсия',
+      headline: 'Създавам потапящи, бързи\nуебсайтове за да може твоят бизнес да продава',
+      sub: 'Комбинирам красиви дизайни, силно присъствие в търсачките и най-добри практики, за да доставя продукт, който се усеща бърз, изглежда уникално и продава.',
+      cta1: 'Свържи се с мен',
+      cta2: 'Виж работата ми',
     },
     chips: [
-      { label: 'Next.js',  icon: '▲',  color: '#3b82f6', glow: 'rgba(59,130,246,0.35)' },
+      { label: 'Speed',  icon: '⚡',  color: '#3b82f6', glow: 'rgba(59,130,246,0.35)' },
       { label: 'Дизайн',   icon: '🎨', color: '#8b5cf6', glow: 'rgba(139,92,246,0.35)' },
-      { label: 'Figma',    icon: '🖊️', color: '#ec4899', glow: 'rgba(236,72,153,0.35)' },
-      { label: 'SEO',      icon: '🔍', color: '#10b981', glow: 'rgba(16,185,129,0.35)' },
+      { label: 'Clicks',    icon: '�', color: '#ec4899', glow: 'rgba(236,72,153,0.35)' },
+      { label: 'Presence',      icon: '🔍', color: '#10b981', glow: 'rgba(16,185,129,0.35)' },
       { label: 'Приходи',  icon: '💰', color: '#f59e0b', glow: 'rgba(245,158,11,0.35)' },
     ],
     services: {
       heading: 'Моите Услуги',
-      sub: 'Комплексни решения за вашите дигитални нужди',
+      sub: 'Не ти трябва цяла агенция. Трябва ти един Мартин.',
       items: [
         {
-          title: 'Frontend Разработка',
-          description: 'Изграждане на адаптивни уеб приложения с модерни технологии и добри практики.',
-          features: ['React & Next.js', 'TypeScript', 'Адаптивен Дизайн', 'Оптимизация'],
-          icon: '⚡',
-        },
-        {
-          title: 'UI/UX Дизайн',
-          description: 'Създаване на интуитивни, красиви интерфейси с изключително потребителско изживяване.',
-          features: ['Потребителски Дизайн', 'Прототипиране', 'Дизайн Системи', 'Достъпност'],
+          title: 'Работа от А до Я',
+          description: 'Ще изградя всичко - от цялостната ти бранд идентичност, през уебсайта ти, до връзката ти с клиенти.',
+          features: ['Уебсайт', 'Бранд идентичност', 'Красиви дизайни', 'Повече клиенти'],
           icon: '🎨',
         },
         {
-          title: 'Уеб Оптимизация',
-          description: 'Вашият сайт зарежда бързо, класира се добре и превръща посетителите в клиенти.',
-          features: ['SEO Оптимизация', 'Производителност', 'Core Web Vitals', 'Анализи'],
+          title: 'Повече клиенти, повече работа',
+          description: 'Увеличаване на клиентите ти с ефективен уебсайт, който привлича внимание и конвертира кликовете в обаждания.',
+          features: ['Увеличаване на клиентите', 'Качество за цената', 'Максимално добра инвестиция', 'Гаранция за резултати'],
+          icon: '⚡',
+        },
+        {
+          title: 'Топ Оптимизация',
+          description: 'Вашият сайт зарежда бързо, класира се на първи позиции в Google и превръща посетителите в клиенти.',
+          features: ['SEO Оптимизация', 'Изграждане на авторитет', 'Висока производителност', 'Анализи'],
           icon: '📈',
         },
       ],
     },
     portfolio: {
       heading: 'Избрани Проекти',
-      sub: 'Селекция от последните ми проекти, показващи дизайн и разработка',
+      sub: 'Наслади се на част от работата ми с клиенти, с които сме повече от работни партньори. Вече над 2 години конвертираме кликовете в приходи за техните бизнеси.',
       viewProject: 'Виж Проекта →',
     },
     showcase: {
       eyebrow: 'Визуална Посока',
-      heading: 'Въртяща 3D галерия с квадратни карти',
-      sub: 'Кинематографична image секция с движение, дълбочина и футуристично усещане за продуктово представяне.',
+      heading: 'Част от работата ми',
+      sub: 'Когато видиш проектите, виждаш персоналното ми отношение към всеки партньор и неговият бизнес.',
       ariaLabel: 'Въртяща галерия със снимки',
       imageAlt: 'Снимка от карусела',
     },
@@ -188,6 +213,25 @@ export const translations = {
       sub: 'Разкажи ми какво изграждаш и ще помогна с дизайна, технологията и пътя към повече клиенти.',
       primary: 'Свържи се',
       secondary: 'Към началото',
+    },
+    workflow: {
+      headingBefore: 'Преди Мартин',
+      headingAfter: 'След Мартин',
+      subOff:
+        'Искаш клиентите да виждат сайта ти? Искаш да конвертираш кликовете в обаждания и работа? И всичко това с минимална инвестиция?',
+      subOn:
+        'Давам ти убийствен дизайн, бърза разработка и карам клиента да ти звънне още преди да е прочел съдържанието. Така сайта ти е максимално добра инвестиция!',
+      ariaToggleOn: 'Включи автопилота',
+      ariaToggleOff: 'Изключи автопилота',
+      taskComplete: 'Готово',
+      tasks: [
+        'Хващащ окото дизайн',
+        'Убийствени резултати за скорост',
+        'Най-доброто SEO за класиране в Гугъл',
+        'Качествена и бърза разработка',
+        'Доволен клиент с минимална инвестиция за качеството',
+        'Телефонът звъни. Имаш нов клиент!',
+      ],
     },
     testimonials: {
       title: 'Стена на доверието',
@@ -250,7 +294,14 @@ export const translations = {
 } as const;
 
 export interface Translations {
-  nav: { portfolio: string; services: string; contact: string };
+  nav: {
+    services: string;
+    advantages: string;
+    work: string;
+    portfolio: string;
+    testimonials: string;
+    contacts: string;
+  };
   hero: { eyebrow: string; headline: string; sub: string; cta1: string; cta2: string };
   chips: ReadonlyArray<{ label: string; icon: string; color: string; glow: string }>;
   services: {
@@ -261,6 +312,16 @@ export interface Translations {
   portfolio: { heading: string; sub: string; viewProject: string };
   showcase: { eyebrow: string; heading: string; sub: string; ariaLabel: string; imageAlt: string };
   contact: { eyebrow: string; heading: string; sub: string; primary: string; secondary: string };
+  workflow: {
+    headingBefore: string;
+    headingAfter: string;
+    subOff: string;
+    subOn: string;
+    ariaToggleOn: string;
+    ariaToggleOff: string;
+    taskComplete: string;
+    tasks: readonly string[];
+  };
   testimonials: {
     title: string;
     sub: string;

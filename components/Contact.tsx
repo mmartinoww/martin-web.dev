@@ -1,26 +1,54 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { useLang } from '@/contexts/LanguageContext';
+
+const POSTER_SRC = '/images/hero-poster.jpeg';
+const VIDEO_SRC = '/images/hero-background.mp4';
 
 export default function Contact() {
   const { t } = useLang();
+  const [videoAllowed, setVideoAllowed] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const sync = () => setVideoAllowed(!mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
 
   return (
-    <section
-      id="contact"
-      className="relative overflow-hidden px-4 py-24"
-      style={{ background: 'var(--bg-section)' }}
-    >
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(circle at 18% 12%, rgba(0,212,255,0.28), transparent 26%), radial-gradient(circle at 82% 78%, rgba(124,58,237,0.24), transparent 28%)',
-        }}
-      />
+    <section id="contact" className="relative overflow-hidden px-4 py-20 rounded-t-[40px]">
+      {/* Background: white plate behind poster + video */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 bg-white" aria-hidden />
+        <img
+          src={POSTER_SRC}
+          alt=""
+          width={1920}
+          height={1080}
+          className="absolute inset-0 h-full w-full object-cover object-[20%_95%]"
+          decoding="async"
+          aria-hidden
+        />
+        {videoAllowed ? (
+          <video
+            className="absolute inset-0 h-full w-full object-cover object-[20%_95%]"
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={POSTER_SRC}
+            aria-hidden
+          >
+            <source src={VIDEO_SRC} type="video/mp4" />
+          </video>
+        ) : null}
+      </div>
 
-      <div className="relative mx-auto max-w-5xl">
+      <div className="relative z-10 mx-auto max-w-5xl">
         <div className="hero-card rounded-[2rem] px-7 py-10 text-center md:px-14 md:py-14">
           <div className="relative z-10">
             <p

@@ -3,76 +3,17 @@
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useLang } from '@/contexts/LanguageContext';
+import { RADIAL_CONFETTI_PIECES } from '@/lib/radialConfetti';
 import { useEffect, useState, type CSSProperties } from 'react';
 
 config.autoAddCss = false;
 
-type ConfettiPiece = {
-  x: number;
-  y: number;
-  r: number;
-  delay: number;
-  w: number;
-  h: number;
-  bg: string;
-};
-
-/** Even radial burst from toggle center (~360°), deterministic for SSR. */
-function buildRadialConfetti(count: number): ConfettiPiece[] {
-  const palette = [
-    '#f8ff7a',
-    '#ffffff',
-    '#7dd3fc',
-    '#fb7185',
-    '#fde68a',
-    '#c4b5fd',
-    '#67e8f9',
-    '#fda4af',
-    '#fef08a',
-    '#bae6fd',
-    '#f0abfc',
-    '#bef264',
-    '#fde047',
-    '#93c5fd',
-    '#fecdd3',
-    '#a7f3d0',
-    '#fef9c3',
-    '#ddd6fe',
-    '#f9a8d4',
-  ];
-  const golden = 2.39996322972865332;
-  return Array.from({ length: count }, (_, i) => {
-    const angle = i * golden;
-    const ring = 0.55 + ((i * 7) % 5) * 0.09;
-    const dist = (112 + ((i * 13) % 52)) * ring;
-    const x = Math.cos(angle) * dist;
-    const y = Math.sin(angle) * dist;
-    return {
-      x,
-      y,
-      r: ((i * 47) % 200) - 100,
-      delay: (i % 14) / 900,
-      w: 4 + (i % 4),
-      h: 8 + (i % 7),
-      bg: palette[i % palette.length]!,
-    };
-  });
-}
-
-const confettiPieces = buildRadialConfetti(40);
-
-const tasks = [
-  'Хващащ окото дизайн',
-  'Убийствени резултати за скорост',
-  'Най-доброто SEO за класиране в Гугъл',
-  'Качествена и бърза разработка',
-  'Доволен клиент с минимална инвестиция за качеството',
-  'Телефонът звъни. Имаш нов клиент!'
-];
-
 const STORAGE_KEY = 'workflow-autopilot-on';
 
 export default function WorkflowAutopilot() {
+  const { t, lang } = useLang();
+  const tasks = t.workflow.tasks;
   const [isOn, setIsOn] = useState(false);
   const [burstId, setBurstId] = useState(0);
   const [completedCount, setCompletedCount] = useState(0);
@@ -103,6 +44,8 @@ export default function WorkflowAutopilot() {
   useEffect(() => {
     if (!isOn) return;
 
+    setCompletedCount(0);
+
     const timers = tasks.map((_, index) =>
       window.setTimeout(() => {
         setCompletedCount(index + 1);
@@ -110,7 +53,7 @@ export default function WorkflowAutopilot() {
     );
 
     return () => timers.forEach(window.clearTimeout);
-  }, [isOn]);
+  }, [isOn, lang, tasks]);
 
   const toggleAutopilot = () => {
     const next = !isOn;
@@ -159,12 +102,12 @@ export default function WorkflowAutopilot() {
           id="workflow-autopilot-heading"
           className="autopilot-heading mb-7 flex flex-col items-center justify-center gap-x-4 gap-y-2 font-black leading-[0.98] tracking-[-0.07em]"
         >
-          <span className="autopilot-heading__workflow mb-1">Преди Мартин</span>
+          <span className="autopilot-heading__workflow mb-1">{t.workflow.headingBefore}</span>
           <button
             type="button"
             className="autopilot-switch border-1 border-white rounded-full mb-2"
             aria-pressed={isOn}
-            aria-label={isOn ? 'Turn autopilot off' : 'Turn autopilot on'}
+            aria-label={isOn ? t.workflow.ariaToggleOff : t.workflow.ariaToggleOn}
             onClick={toggleAutopilot}
           >
             <span className="autopilot-switch__track">
@@ -176,7 +119,7 @@ export default function WorkflowAutopilot() {
             </span>
             {burstId > 0 && isOn ? (
               <span key={burstId} className="autopilot-confetti" aria-hidden>
-                {confettiPieces.map((piece, index) => (
+                {RADIAL_CONFETTI_PIECES.map((piece, index) => (
                   <span
                     key={index}
                     className="autopilot-confetti__piece"
@@ -198,19 +141,17 @@ export default function WorkflowAutopilot() {
               </span>
             ) : null}
           </button>
-          <span className="autopilot-heading__autopilot">След Мартин</span>
+          <span className="autopilot-heading__autopilot">{t.workflow.headingAfter}</span>
         </h2>
 
         <p className="autopilot-subtitle mx-auto mb-10 max-w-xl text-sm font-medium leading-relaxed md:text-base">
-          {isOn
-            ? 'Давам ти убийствен дизайн, бърза разработка и карам клиента да ти звънне още преди да е прочел съдържанието. Така сайта ти е максимално добра инвестиция!'
-            : 'Искаш клиентите да виждат сайта ти? Искаш да конвертираш кликовете в обаждания и работа? И всичко това сминимална инвестиция?'}
+          {isOn ? t.workflow.subOn : t.workflow.subOff}
         </p>
 
         <div className="autopilot-task-list w-full max-w-[28rem]" role="list">
           {tasks.map((task, index) => (
             <div
-              key={task}
+              key={`${lang}-${index}`}
               className={`autopilot-task ${index < completedCount ? 'autopilot-task--complete' : ''}`}
               role="listitem"
             >
@@ -219,11 +160,11 @@ export default function WorkflowAutopilot() {
                   icon={faCheck}
                   className="autopilot-task__check-icon"
                   width={12}
-                  height={12}
+                  height={12} 
                 />
               </span>
               <span className="autopilot-task__label">{task}</span>
-              <span className="autopilot-task__complete">Complete</span>
+              <span className="autopilot-task__complete">{t.workflow.taskComplete}</span>
             </div>
           ))}
         </div>
