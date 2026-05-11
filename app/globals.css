@@ -1827,8 +1827,8 @@ main {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 4px;
-  height: 4px;
+  width: 12px; 
+  height: 12px;
   transform: translate(-50%, -50%);
   color: #1f2937;
   opacity: 0;

@@ -218,8 +218,8 @@ export default function WorkflowAutopilot() {
                 <FontAwesomeIcon
                   icon={faCheck}
                   className="autopilot-task__check-icon"
-                  width={4}
-                  height={4}
+                  width={12}
+                  height={12}
                 />
               </span>
               <span className="autopilot-task__label">{task}</span>
