@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useLang } from '@/contexts/LanguageContext';
+import { CONTACT_TEL_HREF } from '@/lib/contact';
 
-const POSTER_SRC = '/images/hero-poster.jpeg';
+const POSTER_SRC = '/images/hero-poster.jpg';
 const VIDEO_SRC = '/images/hero-background.mp4';
 
 export default function Contact() {
@@ -49,7 +50,7 @@ export default function Contact() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl">
-        <div className="hero-card rounded-[2rem] px-7 py-10 text-center md:px-14 md:py-14">
+        <div className="hero-card footer rounded-[2rem] px-7 py-10 text-center md:px-14 md:py-14">
           <div className="relative z-10">
             <p
               className="mb-4 text-xs font-extrabold uppercase tracking-[0.34em]"
@@ -71,7 +72,7 @@ export default function Contact() {
             </p>
             <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
-                href="mailto:hello@example.com"
+                href={CONTACT_TEL_HREF}
                 className="rounded-full px-8 py-3.5 text-sm font-extrabold text-white transition-transform duration-300 hover:scale-[1.04]"
                 style={{
                   background: 'linear-gradient(135deg, #006dff 0%, #00d4ff 52%, #7c3aed 100%)',

@@ -4,6 +4,7 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import { CONTACT_TEL_HREF } from '@/lib/contact';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { useLang } from '@/contexts/LanguageContext';
 import { RADIAL_CONFETTI_PIECES } from '@/lib/radialConfetti';
@@ -82,7 +83,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="hero-card mx-auto max-w-3xl rounded-[2rem] pt-10 text-center pb-2 lg:pb-12">
+            <div className="hero-card mx-auto max-w-3xl rounded-[2rem] pt-10 text-center pb-2 lg:pb-12 px-0">
               <div className="relative z-10 px-7 md:px-12">
                 <p
                   className="anim-fade-up text-xs uppercase tracking-[0.34em] font-extrabold mb-5"
@@ -107,14 +108,15 @@ export default function Hero() {
                   {t.hero.sub}
                 </p>
 
-                <div className="anim-fade-up-3 flex flex-col sm:flex-row items-center justify-center gap-3">
-                  <Link
-                    href={lang === 'bg' ? '#contact' : '#portfolio'}
+                <div className="anim-fade-up-3 mx-auto gap-3 flex flex-col md:flex-row align-center justify-center">
+                  <a
+                    href={CONTACT_TEL_HREF}
                     onClick={() => setCtaConfettiBurst((id) => id + 1)}
-                    className="cta-main-pop group relative px-8 py-3.5 rounded-full font-extrabold text-white text-sm overflow-visible"
+                    className="cta-main-pop group relative box-border flex min-h-[3rem] w-full max-w-[250px] shrink-0 items-center justify-center self-stretch justify-self-center rounded-full border border-transparent px-8 py-3.5 text-center text-sm font-extrabold text-white overflow-visible sm:min-h-0 sm:h-full mx-auto md:mx-0"
                     style={{
                       background: 'linear-gradient(135deg, #006dff 0%, #00d4ff 52%, #7c3aed 100%)',
-                      boxShadow: '0 14px 44px var(--accent-glow)',
+                      whiteSpace: 'nowrap',
+                      maxWidth: '220px',
                     }}
                   >
                     {ctaConfettiBurst > 0 ? (
@@ -141,19 +143,21 @@ export default function Hero() {
                       </span>
                     ) : null}
                     <span className="relative z-[22] inline-flex items-center justify-center gap-2">
-                      {lang === 'bg' ? (
-                        <FontAwesomeIcon icon={faPhone} className="h-3.5 w-3.5 shrink-0 opacity-[0.95]" aria-hidden />
-                      ) : null}
+                      <FontAwesomeIcon
+                        icon={faPhone}
+                        className="shrink-0 text-[1.5em] leading-none opacity-[0.95]"
+                        aria-hidden
+                      />
                       {t.hero.cta1}
                     </span>
                     <span
                       className="pointer-events-none absolute inset-0 z-[12] rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
                       style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.26), transparent)' }}
                     />
-                  </Link>
+                  </a>
                   <Link
                     href={lang === 'bg' ? '#portfolio' : '#services'}
-                    className="px-8 py-3.5 rounded-full font-bold text-sm transition-all duration-300 hover:scale-[1.04]"
+                    className="box-border flex min-h-[3rem] w-full max-w-[250px] shrink-0 items-center justify-center self-stretch justify-self-center rounded-full px-8 py-3.5 text-center text-sm font-bold transition-all duration-300 hover:scale-[1.04] sm:min-h-0 sm:h-full mx-auto md:mx-0"
                     style={{
                       background: 'var(--bg-glass-strong)',
                       border: '1px solid var(--border-glass)',
@@ -161,6 +165,8 @@ export default function Hero() {
                       backdropFilter: 'blur(14px)',
                       WebkitBackdropFilter: 'blur(14px)',
                       boxShadow: '0 10px 34px rgba(0,0,0,0.10)',
+                      whiteSpace: 'nowrap',
+                      maxWidth: '220px',
                     }}
                   >
                     {t.hero.cta2}

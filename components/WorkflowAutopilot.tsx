@@ -69,7 +69,7 @@ export default function WorkflowAutopilot() {
   return (
     <section
       id="workflow-autopilot"
-      className={`autopilot-section relative isolate overflow-visible px-4 py-10 md:py-20 ${isOn ? 'autopilot-section--on' : ''}`}
+      className={`autopilot-section relative isolate overflow-visible px-4 py-10 md:py-16 ${isOn ? 'autopilot-section--on' : ''}`}
       aria-labelledby="workflow-autopilot-heading"
     >
       <div className="autopilot-bg-pale" aria-hidden />

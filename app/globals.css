@@ -9,7 +9,7 @@
   --bg-section:      #dbeeff;
   --bg-glass:        rgba(255, 255, 255, 0.54);
   --bg-glass-strong: rgba(255, 255, 255, 0.72);
-  --bg-glass-nav:    rgba(255, 255, 255, 0.68);
+  --bg-glass-nav:    rgba(255, 255, 255, 0.5); 
   --border-glass:    rgba(255, 255, 255, 0.70);
   --border-rim:      rgba(14, 165, 233, 0.72);
   --text-primary:    #031225;
@@ -124,7 +124,7 @@ main {
   position: relative;
   z-index: 2;
   background:
-    linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04)),
+    linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.04)),  
     var(--bg-glass-nav);
   backdrop-filter: blur(24px) saturate(1.8);
   -webkit-backdrop-filter: blur(24px) saturate(1.8);
@@ -136,6 +136,65 @@ main {
     inset 0 0 5px var(--lg-highlight);
 }
 
+/* ── Back-to-top FAB (liquid glass; z-index below nav drawer backdrop) ── */
+
+.back-to-top-btn {
+  color: var(--text-primary);
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.14) 42%, rgba(255, 255, 255, 0.06) 100%),
+    var(--bg-glass-strong);
+  backdrop-filter: blur(22px) saturate(1.75);
+  -webkit-backdrop-filter: blur(22px) saturate(1.75);
+  border: 1px solid var(--border-glass);
+  box-shadow:
+    0 14px 44px rgba(0, 109, 255, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(0, 40, 95, 0.2),
+    inset 1px 0 0 rgba(255, 255, 255, 0.1);
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.28s ease,
+    opacity 0.35s ease;
+}
+
+[data-theme="dark"] .back-to-top-btn {
+  box-shadow:
+    0 14px 44px rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(148, 213, 255, 0.12) inset,
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.35),
+    inset 1px 0 0 rgba(255, 255, 255, 0.06);
+}
+
+.back-to-top-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 28px #65c0e794, 0 0 28px #3b82f638, inset 0 1px 1px #fff9; 
+}
+
+[data-theme="dark"] .back-to-top-btn:hover {
+  box-shadow: 0 7px 28px #65c0e794, 0 0 28px #3b82f638, inset 0 1px 1px #fff9; 
+}
+
+.back-to-top-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 14px 44px rgba(0, 109, 255, 0.2),
+    0 0 0 2px var(--accent2),
+    0 0 0 4px color-mix(in srgb, var(--bg) 88%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top-btn {
+    transition-duration: 0.01ms;
+  }
+
+  .back-to-top-btn:hover {
+    transform: none;
+  }
+}
+
 /* ── Hero background ──────────────────────────────────────────────────── */
 
 .hero-section {
@@ -144,7 +203,7 @@ main {
 }
 
 .hero-content {
-  padding-top: clamp(132px, 16svh, 166px);
+  padding-top: clamp(92px, 11svh, 132px);
   padding-bottom: clamp(44px, 7svh, 72px);
 }
 
@@ -484,12 +543,13 @@ main {
     display: none !important;
   }
 }
-
-/* ── Main CTA confetti burst + flash ─────────────────────────────────── */
+  
+/* ── Main CTA confetti burst + flash (inset glow only — hero-card overflow:hidden clips outer halos) ───────────────── */
 
 .cta-main-pop {
   isolation: isolate;
   overflow: visible;
+  box-shadow: var(--shadow-glass), 0px 0px 6px 4px #7dd3fc24 inset, 0px 0px 114px #00d4ff2e, inset 0px 0px 1px var(--lg-highlight), inset 0px -1px 1px var(--lg-highlight);
   transition:
     transform 0.42s cubic-bezier(0.34, 1.56, 0.64, 1),
     box-shadow 0.32s ease;
@@ -497,18 +557,24 @@ main {
 
 .cta-main-pop:hover,
 .cta-main-pop:focus-visible {
+  box-shadow: 
+  inset 0px 0px #ffffff7a, inset 0px 0px #5c5c5c61, inset 0 10px 15px #7dd3fc38, inset 0 0px 4px #00d4ff1f, inset 0 0 8px 5px #ffffff24;
   transform: scale(1.07);
 }
 
 .cta-main-pop::before {
   content: "";
   position: absolute;
-  inset: -8px;
+  inset: 0;
   border-radius: inherit;
-  z-index: -1;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.72), transparent 62%);
+  z-index: 5;
+  background: radial-gradient(
+    ellipse 105% 95% at 50% 32%,
+    rgba(255, 255, 255, 0.58),
+    transparent 58%
+  );
   opacity: 0;
-  transform: scale(0.78);
+  transform: scale(0.9);
   pointer-events: none;
 }
 
@@ -525,14 +591,14 @@ main {
 @keyframes cta-main-flash {
   0% {
     opacity: 0;
-    transform: scale(0.76);
+    transform: scale(0.88);
   }
   42% {
-    opacity: 0.92;
+    opacity: 0.88;
   }
   100% {
     opacity: 0;
-    transform: scale(1.14);
+    transform: scale(1);
   }
 }
 
@@ -803,7 +869,7 @@ main {
   100% {
     transform: translate(0, -50%) rotate(0deg) scale(1);
   }
-}
+} 
 
 @keyframes lang-thumb-pop {
   0% {
@@ -1111,7 +1177,7 @@ main {
     padding-right: calc(1.25rem * 0.67);
   }
 
-  .hero-card {
+  .hero-card.footer {
     padding-left: calc(1.75rem * 0.67);
     padding-right: calc(1.75rem * 0.67);
   }
@@ -1123,7 +1189,7 @@ main {
     padding-right: calc(1.5rem * 0.67);
   }
 
-  .hero-card {
+  .hero-card.footer {
     padding-left: calc(3.5rem * 0.67);
     padding-right: calc(3.5rem * 0.67);
   }
@@ -2251,4 +2317,13 @@ main {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Primary brand gradient (matches hero CTA / logo blues); respects theme tokens */
+.gradient-text-brand {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 52%, var(--accent3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }

@@ -108,17 +108,18 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="relative isolate min-w-0 overflow-x-clip py-20 px-4 md:py-28"
+      className="relative isolate min-w-0 overflow-x-clip px-4 py-10 md:py-12"
       style={{
         background: 'var(--bg-elevated)',
       }}
       aria-labelledby="testimonials-heading"
     >
       <Heart className="left-[6%] top-[14%]" size={28} blur />
-      <Heart className="left-[78%] top-[22%]" size={36} />
-      <Heart className="left-[12%] top-[58%]" size={44} blur />
+      {/* Nudged up on narrow viewports so it does not sit on the first marquee row */}
+      <Heart className="left-[78%] top-[22%] max-md:left-auto max-md:right-3 max-md:top-[min(11rem,22svh)]" size={36} />
+      <Heart className="left-[8%] top-[58%]" size={44} blur />
       <Heart className="left-[72%] top-[68%]" size={26} blur />
-      <Heart className="left-[88%] top-[48%]" size={52} />
+      <Heart className="left-[88%] top-[41%] min-[525px]:top-[40%]" size={52} />
 
       <div className="relative z-[1] mx-auto max-w-6xl px-2 text-center">
         <h2

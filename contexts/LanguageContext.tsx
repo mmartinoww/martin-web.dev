@@ -17,7 +17,7 @@ export const translations = {
     hero: {
       eyebrow: 'Ranking · Design · Conversion',
       headline: 'Crafting immersive, high-performance\nwebsites so your business can sell',
-      sub: 'I blend beautiful designs, strong presence in search engines and best practices to deliver products that feel fast, look polished, and convert.',
+      sub: 'I blend beautiful design, strong presence on the web and best practices - all to deliver a product that feels fast, looks polished, and converts.',
       cta1: 'Contact me',
       cta2: 'View my work',
     },
@@ -67,7 +67,7 @@ export const translations = {
     contact: {
       eyebrow: 'Start a project',
       heading: 'Ready for a faster, sharper website?',
-      sub: 'Tell me what you are building and I will help shape the design, stack, and growth path.',
+      sub: 'Tell me what you are building and I will help shape the design, stack, and path to more customers.',
       primary: 'Contact me',
       secondary: 'Back to top',
     },
@@ -94,44 +94,44 @@ export const translations = {
       title: 'Wall of Love',
       sub: 'SEO, design, and development that earns attention—and landing pages engineered to capture leads.',
       overallRating: '4.9 / 5',
-      overallRatingCaption: 'Combined client satisfaction from feedback on completed projects.',
-      badge: 'Highly rated on recent client work',
+      overallRatingCaption: 'Rating based on client feedback from completed projects',
+      badge: 'See what people said:',
       reviews: [
         {
           name: 'Rachel Kim',
           role: 'Marketing Manager, B2B SaaS',
           quote:
-            'Organic traffic finally moved after a proper technical cleanup and sharper on-page SEO. We rank for phrases that produce demos—not empty impressions.',
+            'Organic traffic finally moved after a proper technical cleanup and sharper on-page SEO. We rank for phrases that are intentional — not empty impressions.',
         },
         {
           name: 'James O’Connell',
           role: 'Owner, home services company',
           quote:
-            'The redesign looks premium, loads fast, and the calls-to-action are obvious. Quote requests funnel cleanly into email and CRM—we book more consultations without raising ad spend.',
+            'The redesign looks premium, loads fast, and the calls-to-action are obvious. Quote requests funnel cleanly into email and CRM — we book more consultations without raising ad spend.',
         },
         {
           name: 'Amélie Fontaine',
           role: 'Founder, creative studio',
           quote:
-            'Our site finally matches how we pitch in the room—consistent typography, spacing, and case-study layouts. Handoff-to-build was painless and the frontend feels meticulous.',
+            'Our site finally matches how we pitch in the room — consistent typography, spacing, and case-study layouts. Handoff-to-build was flawless and the frontend feels meticulous.',
         },
         {
           name: 'David Park',
           role: 'Growth lead, consultancy',
           quote:
-            'We launched a targeted landing page for a new offer: structure, urgency, proof, and analytics were nailed. Qualified form fills showed up quickly—far fewer tyre-kickers than before.',
+            'We launched a targeted landing page for a new offer: structure, urgency, proof, and analytics were nailed. Qualified form fills showed up quickly — far fewer tyre-kickers than before.',
         },
         {
           name: 'Laura Bennett',
           role: 'Coach & facilitator',
           quote:
-            'Lead capture used to leak everywhere. Martin simplified the funnel—one decisive landing path, tighter copy, smarter form fields—and I stopped missing bookings.',
+            'Lead capture used to leak everywhere. Martin simplified the funnel — one decisive landing path, tighter copy, smarter form fields — and I stopped missing bookings.',
         },
         {
           name: 'Marco Silvestri',
           role: 'E-commerce brand manager',
           quote:
-            'Product pages benefited from UX polish plus SEO-aware headings and internal linking. Fewer abandonments from slow loads, clearer trust signals—sales from organic noticeably improved.',
+            'Product pages benefited from UX polish plus SEO-aware headings and internal linking. Fewer abandonments from slow loads, clearer trust signals — sales from organic noticeably improved.',
         },
         {
           name: 'Priya Natarajan',
@@ -159,16 +159,16 @@ export const translations = {
     },
     hero: {
       eyebrow: 'Класиране · Дизайн · Конверсия',
-      headline: 'Създавам потапящи, бързи\nуебсайтове за да може твоят бизнес да продава',
-      sub: 'Комбинирам красиви дизайни, силно присъствие в търсачките и най-добри практики, за да доставя продукт, който се усеща бърз, изглежда уникално и продава.',
+      headline: 'Създавам потапящи, бързи\nуебсайтове, за да може твоят бизнес да продава',
+      sub: 'Комбинирам красив дизайн, силно присъствие в мрежата и най-добри практики, за да доставя продукт, който се усеща бърз, изглежда уникално и продава.',
       cta1: 'Свържи се с мен',
       cta2: 'Виж работата ми',
     },
     chips: [
-      { label: 'Speed',  icon: '⚡',  color: '#3b82f6', glow: 'rgba(59,130,246,0.35)' },
+      { label: 'Бързина',  icon: '⚡',  color: '#3b82f6', glow: 'rgba(59,130,246,0.35)' },
       { label: 'Дизайн',   icon: '🎨', color: '#8b5cf6', glow: 'rgba(139,92,246,0.35)' },
-      { label: 'Clicks',    icon: '�', color: '#ec4899', glow: 'rgba(236,72,153,0.35)' },
-      { label: 'Presence',      icon: '🔍', color: '#10b981', glow: 'rgba(16,185,129,0.35)' },
+      { label: 'Кликвания',    icon: '👆', color: '#ec4899', glow: 'rgba(236,72,153,0.35)' },
+      { label: 'Присъствие',      icon: '🔍', color: '#10b981', glow: 'rgba(16,185,129,0.35)' },
       { label: 'Приходи',  icon: '💰', color: '#f59e0b', glow: 'rgba(245,158,11,0.35)' },
     ],
     services: {
@@ -211,7 +211,7 @@ export const translations = {
       eyebrow: 'Започни проект',
       heading: 'Готов ли си за по-бърз и по-силен сайт?',
       sub: 'Разкажи ми какво изграждаш и ще помогна с дизайна, технологията и пътя към повече клиенти.',
-      primary: 'Свържи се',
+      primary: 'Свържи се с мен',
       secondary: 'Към началото',
     },
     workflow: {
@@ -235,58 +235,58 @@ export const translations = {
     },
     testimonials: {
       title: 'Стена на доверието',
-      sub: 'SEO, дизайн и разработка, които печелят внимание—и лендинги, изградени да събират качествени лидове.',
+      sub: 'SEO, дизайн и разработка, които печелят внимание — и сайтове, изградени да събират качествени клиенти.',
       overallRating: '4.9 / 5',
-      overallRatingCaption: 'Обобщена оценка на база клиентска обратна връзка от завършени проекти.',
-      badge: 'Силни оценки от последни проекти',
+      overallRatingCaption: 'Оценка на база клиентска обратна връзка от завършени проекти',
+      badge: 'Виж какво казаха хората:',
       reviews: [
         {
-          name: 'Николай Василев',
-          role: 'Собственик, сервизна компания',
+          name: 'Николай Дончев',
+          role: 'Собственик на сервиз за бойлери',
           quote:
-            'След техническото SEO и по-ясната структура на страниците трафикът ни стана по-смислен. Появихме се за заявки от хора с реални проблеми, не просто случайни кликове.',
+            'След техническото SEO трафикът ни стана по-смислен. Появихме се за заявки от хора с реални проблеми, не просто случайни кликове.',
         },
         {
-          name: 'Мария Георгиева',
-          role: 'Архитект, студио за интериор',
+          name: 'Симо Иванов',
+          role: 'Специалист по автомобилни услуги',
           quote:
-            'Новият сайт изглежда авторски и чист, а не „шаблонен“. Клиентите казват, че веднага разбират как работим и накъде сме профи—запитванията ни идват по-качествени.',
+            'Новият сайт изглежда авторски и чист, а не шаблонен. Клиентите казват, че веднага разбират как работим.',
         },
         {
-          name: 'Иво Стоянов',
-          role: 'Продуктов мениджър',
+          name: 'Давид Яворов',
+          role: 'Собственик на строителна компания',
           quote:
-            'Искахме бърз, модерен интерфейс без компромис с детайла. Frontend-ът е стегнат и стабилен, а промените по съдържанието вече не са кошмар за екипа.',
+            'Исках модерен интерфейс и висока конверсия без компромис в SEO-то. Получих повече от очакваното!',
         },
         {
-          name: 'Елена Димитрова',
-          role: 'Маркетинг специалист',
+          name: 'Димитрина Иванова',
+          role: 'Собственик на център за слуха',
           quote:
-            'Направихме таргетиран лендинг към ключова оферта: ясни ползи, социално доказателство и измерими цели от първия ден. Лидовете станаха повече и по-сериозни след кампаниите ни.',
+            'Направихме таргетиран лендинг за конкретна услуга: ясни ползи, доказателства и измерими цели. Клиентите започнаха да звънят!',
         },
         {
-          name: 'Кристина Андреева',
-          role: 'Коуч по кариера',
+          name: 'Аделина Георгиева',
+          role: 'Собственик на ресторант',
           quote:
-            'Преди губех хора между форма, календар и имейли. Новият лендинг и простият път за запис се оказаха малка промяна с голям ефект—планирам среща без счупени стъпки.',
+            'Преди губех хора след влизането им на страницата. Новият дизайн и подобрените текстове се оказаха малка промяна с голям ефект!',
         },
         {
           name: 'Георги Петков',
-          role: 'Е-commerce операции',
+          role: 'Собственик на електронен магазин',
           quote:
-            'Подредихме продуктовите страници с по-добър UX, ясни SEO заглавия, по-бързо зареждане и по-малко объркване около доставки. По-малко изоставени колички след органично попадане.',
+            'Подобрихме дизайна на продуктовите страници, SEO-то и конверсията се вдигна. Супер резултати!',
         },
         {
           name: 'Стоян Михайлов',
           role: 'Управител на B2B услуги',
           quote:
-            'Позиционирането ни звучаше общо — подобрихме разказа за услугата, свързахме го с ключовите търсения и добавихме логични CTA точки. Входящите запитвания вече идват с по-ясни брифове.',
+            'Инфото на сайта ни звучеше общо. Подобрихме текстовете за услугата, свързахме го с ключовите търсения и наблегнахме на дизайна. Професионалист!',
         },
         {
           name: 'Анна Николова',
           role: 'Съучредителка, технологичен стартъп',
           quote:
-            'Липсваше ни професионална визитка онлайн: добра информационна архитектура, бързина и финни детайли за търсачки. Резултатът впечатли инвеститорите и улесни демото на продукта.',
+            'Липсваше ни професионална визитка онлайн: добра информационна архитектура, бързина и финни детайли за търсачки. Резултатът впечатли всички!',
         },
       ],
     },

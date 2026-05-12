@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Montserrat } from 'next/font/google';
 import Navigation from '@/components/Navigation';
+import BackToTop from '@/components/BackToTop';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import '@fortawesome/fontawesome-svg-core/styles.css';
@@ -35,6 +36,7 @@ export default function RootLayout({
           <LanguageProvider>
             <Navigation />
             {children}
+            <BackToTop />
           </LanguageProvider>
         </ThemeProvider>
       </body>

@@ -1,11 +1,17 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLang } from '@/contexts/LanguageContext';
+import { CONTACT_TEL_HREF } from '@/lib/contact';
 import ThemeToggle from '@/components/ThemeToggle';
 import LanguageToggle from '@/components/LanguageToggle';
+
+config.autoAddCss = false;
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled]         = useState(false);
@@ -55,7 +61,7 @@ export default function Navigation() {
     <>
       {/* ── Header ── */}
       <header
-        className="fixed top-0 inset-x-0 z-50 flex flex-col items-center backdrop-blur-[6px]"
+        className="fixed top-0 inset-x-0 z-50 flex flex-col items-center"
         style={{
           paddingTop: 'max(12px, env(safe-area-inset-top, 0px))',
           paddingLeft: '1rem',
@@ -63,7 +69,7 @@ export default function Navigation() {
         }}
       >
         <nav
-          className={`glass-nav rounded-3xl flex items-center justify-between w-full max-w-6xl transition-all duration-300 ${
+          className={`glass-nav rounded-3xl flex items-center justify-between w-full max-w-6xl transition-all duration-300 backdrop-blur-[2px] ${
             isScrolled ? 'px-5 py-2.5' : 'px-6 py-3.5'
           }`}
           aria-label="Main navigation"
@@ -102,6 +108,17 @@ export default function Navigation() {
               {/* Theme toggle */}
               <ThemeToggle />
             </div>
+
+            <a
+              href={CONTACT_TEL_HREF}
+              className="md:hidden flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white transition-transform duration-200 hover:scale-[1.05] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent2)] focus-visible:ring-offset-2 cta-main-pop"
+              style={{
+                background: 'linear-gradient(135deg, #006dff 0%, #00d4ff 52%, #7c3aed 100%)'
+              }}
+              aria-label={t.hero.cta1}
+            >
+              <FontAwesomeIcon icon={faPhone} className="h-3.5 w-3.5 shrink-0 opacity-[0.95]" aria-hidden />
+            </a>
 
             {/* Mobile hamburger */}
             <button
@@ -148,8 +165,8 @@ export default function Navigation() {
                   key={l.href}
                   href={l.href}
                   onClick={close}
-                  className="block rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200"
-                  style={{ color: 'var(--text-secondary)', border: '1px solid var(--border-glass)' }}
+                  className="gradient-text-brand block rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200"
+                  style={{ border: '1px solid var(--border-glass)' }}
                 >
                   {l.label}
                 </Link>

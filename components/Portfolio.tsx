@@ -8,10 +8,10 @@ export default function Portfolio() {
   const { t } = useLang();
 
   return (
-    <section id="portfolio" className="py-24 px-4" style={{ background: 'var(--bg)' }}>
+    <section id="portfolio" className="py-10 md:py-16 px-4" style={{ background: 'var(--bg)' }}>
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <p
             className="text-xs uppercase tracking-[0.3em] font-semibold mb-3"
             style={{ color: 'var(--accent)' }}
