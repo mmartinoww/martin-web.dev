@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLang } from '@/contexts/LanguageContext';
 import { CONTACT_TEL_HREF } from '@/lib/contact';
 
@@ -11,6 +11,8 @@ const VIDEO_SRC = '/images/hero-background.mp4';
 export default function Contact() {
   const { t } = useLang();
   const [videoAllowed, setVideoAllowed] = useState(false);
+  const [videoFailed, setVideoFailed] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -19,6 +21,13 @@ export default function Contact() {
     mq.addEventListener('change', sync);
     return () => mq.removeEventListener('change', sync);
   }, []);
+
+  useEffect(() => {
+    if (!videoAllowed || videoFailed) return;
+    const el = videoRef.current;
+    if (!el) return;
+    void el.play().catch(() => {});
+  }, [videoAllowed, videoFailed]);
 
   return (
     <section id="contact" className="relative overflow-hidden px-4 py-20 rounded-t-[40px]">
@@ -34,15 +43,18 @@ export default function Contact() {
           decoding="async"
           aria-hidden
         />
-        {videoAllowed ? (
+        {videoAllowed && !videoFailed ? (
           <video
+            ref={videoRef}
             className="absolute inset-0 h-full w-full object-cover object-[20%_95%]"
             autoPlay
             muted
             loop
             playsInline
+            preload="auto"
             poster={POSTER_SRC}
             aria-hidden
+            onError={() => setVideoFailed(true)}
           >
             <source src={VIDEO_SRC} type="video/mp4" />
           </video>

@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import './globals.css';
+import './services-cards.css';
 
 const montserrat = Montserrat({
   variable: '--font-montserrat',

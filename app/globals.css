@@ -188,10 +188,10 @@ main {
 @media (prefers-reduced-motion: reduce) {
   .back-to-top-btn {
     transition-duration: 0.01ms;
-  }
+  } 
 
   .back-to-top-btn:hover {
-    transform: none;
+    transform: none; 
   }
 }
 
@@ -1031,15 +1031,13 @@ main {
 .nav-link:hover               { color: var(--text-primary); }
 .nav-link:hover::after        { transform: scaleX(1); }
 
-/* ── Card hover ───────────────────────────────────────────────────────── */
+/* ── Card hover (project cards; Services → app/services-cards.css) ─────── */
 
-.service-card,
 .project-card {
   transition: transform 0.28s ease, box-shadow 0.28s ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .service-card:hover,
   .project-card:hover {
     transform: translateY(-6px);
     box-shadow:
@@ -1050,99 +1048,7 @@ main {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .service-card:hover,
-  .project-card:hover { transform: none; }
-}
-
-/* ── Services fan (middle elevated & front, sides partially behind) ───── */
-
-.services-fan-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .services-fan-wrap {
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 0;
-    padding: 2.75rem 0 0.25rem;
-    overflow: visible;
-  }
-
-  .services-fan-wrap .service-card {
-    flex: 0 1 300px;
-    max-width: 300px;
-    width: 100%;
-    transform-origin: 50% 100%;
-  }
-
-  .services-fan-wrap .service-card:nth-child(1) {
-    z-index: 1;
-    margin-right: -3.75rem;
-    transform: translateX(-3.25rem) rotate(-6deg);
-  }
-
-  .services-fan-wrap .service-card:nth-child(2) {
-    z-index: 2;
-    margin-left: -2.25rem;
-    margin-right: -2.25rem;
-    transform: translateY(-20px);
-  }
-
-  .services-fan-wrap .service-card:nth-child(3) {
-    z-index: 1;
-    margin-left: -3.75rem;
-    transform: translateX(3.25rem) rotate(6deg);
-  }
-}
-
-@media (min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .services-fan-wrap .service-card:nth-child(1):hover {
-    transform: translateX(-3.25rem) rotate(-6deg) translateY(-6px);
-    box-shadow:
-      0 0 0 1px var(--border-rim),
-      var(--shadow-glass),
-      0 0 32px var(--accent-glow);
-  }
-
-  .services-fan-wrap .service-card:nth-child(2):hover {
-    transform: translateY(calc(-20px - 6px));
-    box-shadow:
-      0 0 0 1px var(--border-rim),
-      var(--shadow-glass),
-      0 0 32px var(--accent-glow);
-  }
-
-  .services-fan-wrap .service-card:nth-child(3):hover {
-    transform: translateX(3.25rem) rotate(6deg) translateY(-6px);
-    box-shadow:
-      0 0 0 1px var(--border-rim),
-      var(--shadow-glass),
-      0 0 32px var(--accent-glow);
-  }
-}
-
-@media (min-width: 768px) and (prefers-reduced-motion: reduce) {
-  .services-fan-wrap {
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    padding-top: 0;
-  }
-
-  .services-fan-wrap .service-card:nth-child(1),
-  .services-fan-wrap .service-card:nth-child(2),
-  .services-fan-wrap .service-card:nth-child(3) {
-    margin-left: 0;
-    margin-right: 0;
-    transform: none;
-  }
-
-  .services-fan-wrap .service-card:nth-child(1):hover,
-  .services-fan-wrap .service-card:nth-child(2):hover,
-  .services-fan-wrap .service-card:nth-child(3):hover {
+  .project-card:hover {
     transform: none;
   }
 }
@@ -1150,11 +1056,6 @@ main {
 /* ── Card padding-x: −33% under 1024px (preserve Tailwind vertical padding) ─ */
 
 @media (max-width: 1023px) {
-  .service-card.glass {
-    padding-left: calc(2rem * 0.67);
-    padding-right: calc(2rem * 0.67);
-  }
-
   .project-card > div.p-6 {
     padding-left: calc(1.5rem * 0.67);
     padding-right: calc(1.5rem * 0.67);
