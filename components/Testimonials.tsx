@@ -3,6 +3,7 @@
 import type { CSSProperties } from 'react';
 import { useEffect, useId, useMemo, useRef } from 'react';
 import { Playfair_Display } from 'next/font/google';
+import RevealOnScroll from '@/components/RevealOnScroll';
 import { useLang } from '@/contexts/LanguageContext';
 
 const playfair = Playfair_Display({
@@ -122,6 +123,7 @@ export default function Testimonials() {
       <Heart className="left-[88%] top-[41%] min-[525px]:top-[40%]" size={52} />
 
       <div className="relative z-[1] mx-auto max-w-6xl px-2 text-center">
+        <RevealOnScroll>
         <h2
           id="testimonials-heading"
           className={`${playfair.className} mb-4 text-[clamp(2.25rem,5vw,3.75rem)] font-semibold italic tracking-tight`}
@@ -169,13 +171,14 @@ export default function Testimonials() {
             <path d="M12 3.5l2.92 6.27 6.71.71-5.06 4.61 1.49 7.41L12 19.92 6.94 21.5l1.49-7.41-5.06-4.61 6.71-.71L12 3.5z" />
           </svg>
         </div>
+        </RevealOnScroll>
       </div>
 
-      <div className="relative z-[1] mx-auto mt-14 min-w-0 w-full max-w-[min(1400px,100%)]">
+      <RevealOnScroll delayMs={100} rootMargin="0px 0px -4% 0px" className="relative z-[1] mx-auto mt-14 min-w-0 w-full max-w-[min(1400px,100%)]">
         <TestimonialRow reviews={even} reverse={false} />
         <div className="h-4 md:h-5" />
         <TestimonialRow reviews={odd} reverse />
-      </div>
+      </RevealOnScroll>
     </section>
   );
 }

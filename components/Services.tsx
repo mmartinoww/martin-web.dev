@@ -1,5 +1,6 @@
 'use client';
 
+import RevealOnScroll from '@/components/RevealOnScroll';
 import { useLang } from '@/contexts/LanguageContext';
 
 export default function Services() {
@@ -13,7 +14,7 @@ export default function Services() {
     >
       <div className="max-w-xl lg:max-w-6xl mx-auto">
         {/* Heading */}
-        <div className="text-center mb-8">
+        <RevealOnScroll className="text-center mb-8">
           <p
             className="text-xs uppercase tracking-[0.3em] font-semibold mb-3"
             style={{ color: 'var(--accent)' }}
@@ -32,13 +33,13 @@ export default function Services() {
           >
             {t.services.sub}
           </p>
-        </div>
+        </RevealOnScroll>
 
         {/* Cards — mobile stack; md+ symmetrical fan (middle front, sides tucked & rotated) */}
         <div className="services-fan-wrap">
-          {t.services.items.map((service) => (
+          {t.services.items.map((service, index) => (
+            <RevealOnScroll key={service.title} delayMs={index * 75} rootMargin="0px 0px -8% 0px">
             <div
-              key={service.title}
               className="service-card glass rounded-2xl p-8 flex flex-col"
             >
               {/* Icon */}
@@ -87,6 +88,7 @@ export default function Services() {
                 ))}
               </ul>
             </div>
+            </RevealOnScroll>
           ))}
         </div>
       </div>

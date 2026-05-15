@@ -3,6 +3,7 @@
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import RevealOnScroll from '@/components/RevealOnScroll';
 import { useLang } from '@/contexts/LanguageContext';
 import { RADIAL_CONFETTI_PIECES } from '@/lib/radialConfetti';
 import { useEffect, useState, type CSSProperties } from 'react';
@@ -98,6 +99,7 @@ export default function WorkflowAutopilot() {
       </div>
 
       <div className="relative z-[2] mx-auto flex max-w-5xl flex-col items-center text-center">
+        <RevealOnScroll className="w-full">
         <h2
           id="workflow-autopilot-heading"
           className="autopilot-heading mb-7 flex flex-col items-center justify-center gap-x-4 gap-y-2 font-black leading-[0.98] tracking-[-0.07em]"
@@ -143,11 +145,15 @@ export default function WorkflowAutopilot() {
           </button>
           <span className="autopilot-heading__autopilot">{t.workflow.headingAfter}</span>
         </h2>
+        </RevealOnScroll>
 
+        <RevealOnScroll delayMs={80} className="w-full">
         <p className="autopilot-subtitle mx-auto mb-10 max-w-xl text-sm font-medium leading-relaxed md:text-base">
           {isOn ? t.workflow.subOn : t.workflow.subOff}
         </p>
+        </RevealOnScroll>
 
+        <RevealOnScroll delayMs={140} rootMargin="0px 0px -6% 0px">
         <div className="autopilot-task-list w-full max-w-[28rem]" role="list">
           {tasks.map((task, index) => (
             <div
@@ -168,6 +174,7 @@ export default function WorkflowAutopilot() {
             </div>
           ))}
         </div>
+        </RevealOnScroll>
       </div>
     </section>
   );

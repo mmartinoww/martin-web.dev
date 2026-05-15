@@ -38,27 +38,29 @@
     overflow: visible;
   }
 
-  .services-fan-wrap .service-card {
+  /* Direct children may be wrappers (e.g. scroll reveal) — fan transforms apply to .service-card inside. */
+  .services-fan-wrap > * {
     flex: 0 1 300px;
     max-width: 300px;
     width: 100%;
     transform-origin: 50% 100%;
+    display: flex;
   }
 
-  .services-fan-wrap .service-card:nth-child(1) {
+  .services-fan-wrap > :nth-child(1) .service-card {
     z-index: 1;
     margin-right: -3.75rem;
     transform: translateX(-3.25rem) rotate(-6deg);
   }
 
-  .services-fan-wrap .service-card:nth-child(2) {
+  .services-fan-wrap > :nth-child(2) .service-card {
     z-index: 2;
     margin-left: -2.25rem;
     margin-right: -2.25rem;
     transform: translateY(-20px);
   }
 
-  .services-fan-wrap .service-card:nth-child(3) {
+  .services-fan-wrap > :nth-child(3) .service-card {
     z-index: 1;
     margin-left: -3.75rem;
     transform: translateX(3.25rem) rotate(6deg);
@@ -66,7 +68,7 @@
 }
 
 @media (min-width: 768px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .services-fan-wrap .service-card:nth-child(1):hover {
+  .services-fan-wrap > :nth-child(1) .service-card:hover {
     transform: translateX(-3.25rem) rotate(-6deg) translateY(-6px);
     box-shadow:
       0 0 0 1px var(--border-rim),
@@ -74,7 +76,7 @@
       0 0 32px var(--accent-glow);
   }
 
-  .services-fan-wrap .service-card:nth-child(2):hover {
+  .services-fan-wrap > :nth-child(2) .service-card:hover {
     transform: translateY(calc(-20px - 6px));
     box-shadow:
       0 0 0 1px var(--border-rim),
@@ -82,7 +84,7 @@
       0 0 32px var(--accent-glow);
   }
 
-  .services-fan-wrap .service-card:nth-child(3):hover {
+  .services-fan-wrap > :nth-child(3) .service-card:hover {
     transform: translateX(3.25rem) rotate(6deg) translateY(-6px);
     box-shadow:
       0 0 0 1px var(--border-rim),
@@ -98,17 +100,17 @@
     padding-top: 0;
   }
 
-  .services-fan-wrap .service-card:nth-child(1),
-  .services-fan-wrap .service-card:nth-child(2),
-  .services-fan-wrap .service-card:nth-child(3) {
+  .services-fan-wrap > :nth-child(1) .service-card,
+  .services-fan-wrap > :nth-child(2) .service-card,
+  .services-fan-wrap > :nth-child(3) .service-card {
     margin-left: 0;
     margin-right: 0;
     transform: none;
   }
 
-  .services-fan-wrap .service-card:nth-child(1):hover,
-  .services-fan-wrap .service-card:nth-child(2):hover,
-  .services-fan-wrap .service-card:nth-child(3):hover {
+  .services-fan-wrap > :nth-child(1) .service-card:hover,
+  .services-fan-wrap > :nth-child(2) .service-card:hover,
+  .services-fan-wrap > :nth-child(3) .service-card:hover {
     transform: none;
   }
 }

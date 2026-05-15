@@ -11,6 +11,8 @@
   --bg-glass-strong: rgba(255, 255, 255, 0.72);
   --bg-glass-nav:    rgba(255, 255, 255, 0.5); 
   --border-glass:    rgba(255, 255, 255, 0.70);
+  /* Tech stack pills: clearer grey rim on bright glass */
+  --border-tech-pill: rgba(36, 72, 111, 0.22);
   --border-rim:      rgba(14, 165, 233, 0.72);
   --text-primary:    #031225;
   --text-secondary:  #24486f;
@@ -46,6 +48,7 @@
   --bg-glass-strong: rgba(8, 30, 73, 0.62);
   --bg-glass-nav:    rgba(4, 16, 38, 0.58);
   --border-glass:    rgba(148, 213, 255, 0.24);
+  --border-tech-pill: var(--border-glass);
   --border-rim:      rgba(0, 212, 255, 0.66);
   --text-primary:    #f2f8ff;
   --text-secondary:  #c7ddff;
@@ -97,6 +100,31 @@ main {
 
 #testimonials {
   overflow-x: clip;
+}
+
+/* ── Scroll reveal (RevealOnScroll) ─────────────────────────────────────── */
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 1.35rem, 0);
+  transition:
+    opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.scroll-reveal--visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
 }
 
 /* ── Glass utilities ──────────────────────────────────────────────────── */
@@ -1007,7 +1035,6 @@ main {
 }
 
 /* ── Nav link hover ───────────────────────────────────────────────────── */
-
 .nav-link {
   position: relative;
   color: var(--text-secondary);
@@ -1035,6 +1062,37 @@ main {
 
 .project-card {
   transition: transform 0.28s ease, box-shadow 0.28s ease;
+} 
+@keyframes portfolio-preview-hand-pulse {
+  0%, 100% {
+    opacity: 0.88;
+    transform: scale(1);
+    filter: drop-shadow(0 2px 5px rgb(0 0 0 / 0.4));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.09);
+    filter: drop-shadow(0 5px 12px rgb(0 0 0 / 0.5));
+  }
+}
+
+.portfolio-preview-hand-hint {
+  animation: portfolio-preview-hand-pulse 1.55s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-preview-hand-hint {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: drop-shadow(0 2px 5px rgb(0 0 0 / 0.35));
+  }
+
+  .project-card-preview-img {
+    transition-duration: 0.001ms !important;
+    transition-timing-function: linear !important;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {

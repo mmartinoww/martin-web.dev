@@ -1,7 +1,8 @@
 'use client';
 
-import { portfolioProjects } from '@/data/portfolio';
 import ProjectCard from './ProjectCard';
+import RevealOnScroll from '@/components/RevealOnScroll';
+import { portfolioProjects } from '@/data/portfolio';
 import { useLang } from '@/contexts/LanguageContext';
 
 export default function Portfolio() {
@@ -11,7 +12,7 @@ export default function Portfolio() {
     <section id="portfolio" className="py-10 md:py-16 px-4" style={{ background: 'var(--bg)' }}>
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
-        <div className="text-center mb-8">
+        <RevealOnScroll className="text-center mb-8">
           <p
             className="text-xs uppercase tracking-[0.3em] font-semibold mb-3"
             style={{ color: 'var(--accent)' }}
@@ -30,12 +31,14 @@ export default function Portfolio() {
           >
             {t.portfolio.sub}
           </p>
-        </div>
+        </RevealOnScroll>
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {portfolioProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {portfolioProjects.map((project, index) => (
+            <RevealOnScroll key={project.id} delayMs={Math.min(index * 80, 280)} rootMargin="0px 0px -8% 0px">
+              <ProjectCard project={project} />
+            </RevealOnScroll>
           ))}
         </div>
       </div>

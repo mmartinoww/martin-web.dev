@@ -56,6 +56,21 @@ export const translations = {
       heading: 'Featured Projects',
       sub: 'A glimpse of my work with clients, which are more than just business partners already. More than 2 years of converting clicks into cash for their businesses, still going strong.',
       viewProject: 'View Project →',
+      previewScrollAria: 'Reveal more of the project preview. On touch devices, tap to scroll the image.',
+    },
+    projectDetail: {
+      back: 'Back to portfolio',
+      featuresHeading: 'Key features',
+      features: [
+        'Responsive design across all devices',
+        'Modern UX with performance in mind',
+        'SEO-ready structure and measurable speed',
+        'Clean codebase you can iterate on',
+      ],
+      sidebarHeading: 'Project details',
+      technologiesLabel: 'Technologies',
+      visitLive: 'Visit live site ↗',
+      viewAllProjects: '← View all projects',
     },
     showcase: {
       eyebrow: 'Visual Direction',
@@ -199,6 +214,21 @@ export const translations = {
       heading: 'Избрани Проекти',
       sub: 'Наслади се на част от работата ми с клиенти, с които сме повече от работни партньори. Вече над 2 години конвертираме кликовете в приходи за техните бизнеси.',
       viewProject: 'Виж Проекта →',
+      previewScrollAria: 'Покажи повече от прегледа на проекта. На мобилно устройство докосни, за да превъртиш изображението.',
+    },
+    projectDetail: {
+      back: 'Обратно към портфолиото',
+      featuresHeading: 'Ключови характеристики',
+      features: [
+        'Адаптивен дизайн за всички устройства',
+        'Съвременен UX с фокус върху скоростта',
+        'SEO структура и измеримо бързо зареждане',
+        'Чист код, подходящ за развитие',
+      ],
+      sidebarHeading: 'Детайли за проекта',
+      technologiesLabel: 'Технологии',
+      visitLive: 'Виж сайта на живо ↗',
+      viewAllProjects: '← Към всички проекти',
     },
     showcase: {
       eyebrow: 'Визуална Посока',
@@ -309,7 +339,16 @@ export interface Translations {
     sub: string;
     items: ReadonlyArray<{ title: string; description: string; features: readonly string[]; icon: string }>;
   };
-  portfolio: { heading: string; sub: string; viewProject: string };
+  portfolio: { heading: string; sub: string; viewProject: string; previewScrollAria: string };
+  projectDetail: {
+    back: string;
+    featuresHeading: string;
+    features: readonly string[];
+    sidebarHeading: string;
+    technologiesLabel: string;
+    visitLive: string;
+    viewAllProjects: string;
+  };
   showcase: { eyebrow: string; heading: string; sub: string; ariaLabel: string; imageAlt: string };
   contact: { eyebrow: string; heading: string; sub: string; primary: string; secondary: string };
   workflow: {

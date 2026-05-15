@@ -156,7 +156,7 @@ export default function Hero() {
                     />
                   </a>
                   <Link
-                    href={lang === 'bg' ? '#portfolio' : '#services'}
+                    href={lang === 'bg' ? '#rabota' : '#rabota'}
                     className="box-border flex min-h-[3rem] w-full max-w-[250px] shrink-0 items-center justify-center self-stretch justify-self-center rounded-full px-8 py-3.5 text-center text-sm font-bold transition-all duration-300 hover:scale-[1.04] sm:min-h-0 sm:h-full mx-auto md:mx-0"
                     style={{
                       background: 'var(--bg-glass-strong)',

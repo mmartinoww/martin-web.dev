@@ -1,5 +1,6 @@
 'use client';
 
+import RevealOnScroll from '@/components/RevealOnScroll';
 import type { CSSProperties } from 'react';
 import Image from 'next/image';
 import { useLang } from '@/contexts/LanguageContext';
@@ -21,7 +22,7 @@ export default function ImageCarousel() {
   return (
     <section id="rabota" className="image-carousel-section px-4 pt-12 pb-16 md:pb-0">
       <div className="mx-auto max-w-6xl">
-        <div className="text-center lg:mb-20">
+        <RevealOnScroll className="text-center lg:mb-20">
           <p
             className="text-xs uppercase tracking-[0.3em] font-semibold mb-3"
             style={{ color: 'var(--accent)' }}
@@ -40,29 +41,31 @@ export default function ImageCarousel() {
           >
             {t.showcase.sub}
           </p>
-        </div>
+        </RevealOnScroll>
 
-        <div className="image-carousel-stage pt-20" aria-label={t.showcase.ariaLabel}>
-          <div className="image-carousel-camera">
-            <div className="image-carousel-ring">
-              {carouselImages.map((src, index) => (
-                <div
-                  key={`${src}-${index}`}
-                  className="image-carousel-card"
-                  style={{ '--carousel-angle': `${index * step}deg` } as CSSProperties}
-                >
-                  <Image
-                    src={src}
-                    alt={`${t.showcase.imageAlt} ${index + 1}`}
-                    fill
-                    sizes="(max-width: 767px) 40vw, 18vw"
-                    loading={index < 2 ? 'eager' : 'lazy'}
-                  />
-                </div>
-              ))}
+        <RevealOnScroll delayMs={90} rootMargin="0px 0px -5% 0px">
+          <div className="image-carousel-stage pt-20" aria-label={t.showcase.ariaLabel}>
+            <div className="image-carousel-camera">
+              <div className="image-carousel-ring">
+                {carouselImages.map((src, index) => (
+                  <div
+                    key={`${src}-${index}`}
+                    className="image-carousel-card"
+                    style={{ '--carousel-angle': `${index * step}deg` } as CSSProperties}
+                  >
+                    <Image
+                      src={src}
+                      alt={`${t.showcase.imageAlt} ${index + 1}`}
+                      fill
+                      sizes="(max-width: 767px) 40vw, 18vw"
+                      loading={index < 2 ? 'eager' : 'lazy'}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </RevealOnScroll>
       </div>
     </section>
   );

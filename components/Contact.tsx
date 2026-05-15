@@ -1,9 +1,16 @@
 'use client';
 
+import { config } from '@fortawesome/fontawesome-svg-core';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import RevealOnScroll from '@/components/RevealOnScroll';
 import { useLang } from '@/contexts/LanguageContext';
 import { CONTACT_TEL_HREF } from '@/lib/contact';
+import { RADIAL_CONFETTI_PIECES } from '@/lib/radialConfetti';
+
+config.autoAddCss = false;
 
 const POSTER_SRC = '/images/hero-poster.jpg';
 const VIDEO_SRC = '/images/hero-background.mp4';
@@ -12,6 +19,7 @@ export default function Contact() {
   const { t } = useLang();
   const [videoAllowed, setVideoAllowed] = useState(false);
   const [videoFailed, setVideoFailed] = useState(false);
+  const [ctaConfettiBurst, setCtaConfettiBurst] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -62,6 +70,7 @@ export default function Contact() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl">
+        <RevealOnScroll rootMargin="0px 0px -10% 0px">
         <div className="hero-card footer rounded-[2rem] px-7 py-10 text-center md:px-14 md:py-14">
           <div className="relative z-10">
             <p
@@ -82,24 +91,65 @@ export default function Contact() {
             >
               {t.contact.sub}
             </p>
-            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="mx-auto flex flex-col items-center justify-center gap-3 md:flex-row">
               <a
                 href={CONTACT_TEL_HREF}
-                className="rounded-full px-8 py-3.5 text-sm font-extrabold text-white transition-transform duration-300 hover:scale-[1.04]"
+                onClick={() => setCtaConfettiBurst((id) => id + 1)}
+                className="cta-main-pop group relative box-border flex min-h-[3rem] w-full max-w-[250px] shrink-0 items-center justify-center self-stretch justify-self-center overflow-visible rounded-full border border-transparent px-8 py-3.5 text-center text-sm font-extrabold text-white sm:min-h-0 sm:h-full mx-auto md:mx-0"
                 style={{
                   background: 'linear-gradient(135deg, #006dff 0%, #00d4ff 52%, #7c3aed 100%)',
-                  boxShadow: '0 14px 44px var(--accent-glow)',
+                  whiteSpace: 'nowrap',
+                  maxWidth: '220px',
                 }}
               >
-                {t.contact.primary}
+                {ctaConfettiBurst > 0 ? (
+                  <span key={ctaConfettiBurst} className="autopilot-confetti" aria-hidden>
+                    {RADIAL_CONFETTI_PIECES.map((piece, index) => (
+                      <span
+                        key={index}
+                        className="autopilot-confetti__piece"
+                        style={
+                          {
+                            '--confetti-x': `${piece.x}px`,
+                            '--confetti-y': `${piece.y}px`,
+                            '--confetti-mid-x': `${piece.x * 0.58}px`,
+                            '--confetti-mid-y': `${piece.y * 0.58}px`,
+                            '--confetti-r': `${piece.r}deg`,
+                            width: piece.w,
+                            height: piece.h,
+                            background: piece.bg,
+                            animationDelay: `${piece.delay}s`,
+                          } as CSSProperties
+                        }
+                      />
+                    ))}
+                  </span>
+                ) : null}
+                <span className="relative z-[22] inline-flex items-center justify-center gap-2">
+                  <FontAwesomeIcon
+                    icon={faPhone}
+                    className="shrink-0 text-[1.5em] leading-none opacity-[0.95]"
+                    aria-hidden
+                  />
+                  {t.contact.primary}
+                </span>
+                <span
+                  className="pointer-events-none absolute inset-0 z-[12] rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
+                  style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.26), transparent)' }}
+                />
               </a>
               <Link
-                href="#"
-                className="rounded-full px-8 py-3.5 text-sm font-bold transition-transform duration-300 hover:scale-[1.04]"
+                href="/"
+                className="box-border flex min-h-[3rem] w-full max-w-[250px] shrink-0 items-center justify-center self-stretch justify-self-center rounded-full px-8 py-3.5 text-center text-sm font-bold transition-all duration-300 hover:scale-[1.04] sm:min-h-0 sm:h-full mx-auto md:mx-0"
                 style={{
                   background: 'var(--bg-glass-strong)',
                   border: '1px solid var(--border-glass)',
                   color: 'var(--text-primary)',
+                  backdropFilter: 'blur(14px)',
+                  WebkitBackdropFilter: 'blur(14px)',
+                  boxShadow: '0 10px 34px rgba(0,0,0,0.10)',
+                  whiteSpace: 'nowrap',
+                  maxWidth: '220px',
                 }}
               >
                 {t.contact.secondary}
@@ -107,6 +157,7 @@ export default function Contact() {
             </div>
           </div>
         </div>
+        </RevealOnScroll>
       </div>
     </section>
   );
